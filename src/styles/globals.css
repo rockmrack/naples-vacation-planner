@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Naples-inspired CSS variables */
+  --color-sand: 217, 184, 124;
+  --color-ocean: 12, 159, 235;
+  --color-sunset: 249, 115, 22;
+  --color-palm: 34, 197, 94;
+  
+  /* Gradients */
+  --gradient-sunset: linear-gradient(135deg, #fb923c 0%, #f97316 50%, #ea580c 100%);
+  --gradient-ocean: linear-gradient(135deg, #36b9fa 0%, #0c9feb 50%, #007fc9 100%);
+  --gradient-hero: linear-gradient(180deg, rgba(0, 127, 201, 0.9) 0%, rgba(12, 159, 235, 0.7) 100%);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Smooth focus rings */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ocean-500 ring-offset-2;
+  }
+
+  /* Selection styling */
+  ::selection {
+    @apply bg-ocean-200 text-ocean-900;
+  }
+}
+
+@layer components {
+  /* Premium card styling */
+  .card {
+    @apply rounded-2xl bg-white shadow-lg shadow-gray-200/50 border border-gray-100;
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card:hover {
+    @apply shadow-xl shadow-gray-200/60 -translate-y-1;
+  }
+
+  /* Gradient text utility */
+  .text-gradient-sunset {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-sunset);
+  }
+
+  .text-gradient-ocean {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-ocean);
+  }
+
+  /* Premium button styles */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply px-6 py-3 rounded-xl font-semibold;
+    @apply bg-ocean-500 text-white;
+    @apply shadow-lg shadow-ocean-500/30;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-ocean-600 hover:shadow-xl hover:shadow-ocean-500/40 hover:-translate-y-0.5;
+    @apply active:translate-y-0 active:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply px-6 py-3 rounded-xl font-semibold;
+    @apply bg-white text-gray-800 border-2 border-gray-200;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:border-ocean-500 hover:text-ocean-600 hover:-translate-y-0.5;
+    @apply active:translate-y-0;
+  }
+
+  /* Section container */
+  .section-container {
+    @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Hero overlay pattern */
+  .hero-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Animated underline for links */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: "";
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-current;
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Disclosure banner */
+  .disclosure-banner {
+    @apply my-6 p-4 rounded-xl;
+    @apply bg-gradient-to-r from-amber-50 via-orange-50 to-amber-50;
+    @apply border border-amber-200;
+    @apply text-sm text-amber-900;
+  }
+
+  /* Quick summary card */
+  .quick-summary {
+    @apply my-8 p-6 rounded-2xl;
+    @apply bg-gradient-to-br from-ocean-50 to-blue-50;
+    @apply border border-ocean-100;
+    @apply shadow-lg shadow-ocean-100/50;
+  }
+
+  /* Affiliate CTA styling */
+  .affiliate-cta {
+    @apply my-8 p-6 rounded-2xl;
+    @apply bg-white border border-gray-200;
+    @apply shadow-xl shadow-gray-200/50;
+    @apply transition-all duration-300;
+  }
+
+  .affiliate-cta:hover {
+    @apply shadow-2xl shadow-gray-200/60 -translate-y-1;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Staggered animation delays */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+}

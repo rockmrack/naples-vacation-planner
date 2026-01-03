@@ -1,0 +1,62 @@
+{
+    "viator_sunset_cruise_naples": {
+        "label": "Book a Sunset Cruise",
+        "url": "https://www.viator.com/tours/Naples-FL/Sunset-Cruise",
+        "partner": "viator",
+        "category": "tours"
+    },
+    "viator_everglades_tour": {
+        "label": "Book Everglades Airboat Tour",
+        "url": "https://www.viator.com/tours/Naples-FL/Everglades-Airboat",
+        "partner": "viator",
+        "category": "tours"
+    },
+    "viator_marco_island_tour": {
+        "label": "Book Marco Island Shelling Tour",
+        "url": "https://www.viator.com/tours/Naples-FL/Marco-Island",
+        "partner": "viator",
+        "category": "tours"
+    },
+    "viator_dolphin_cruise": {
+        "label": "Book Dolphin Watching Cruise",
+        "url": "https://www.viator.com/tours/Naples-FL/Dolphin-Cruise",
+        "partner": "viator",
+        "category": "tours"
+    },
+    "booking_hotels_naples": {
+        "label": "Search Hotels in Naples",
+        "url": "https://www.booking.com/searchresults.html?ss=Naples%2C+Florida",
+        "partner": "booking",
+        "category": "hotels"
+    },
+    "booking_hotels_old_naples": {
+        "label": "Hotels in Old Naples",
+        "url": "https://www.booking.com/searchresults.html?ss=Old+Naples%2C+Florida",
+        "partner": "booking",
+        "category": "hotels"
+    },
+    "booking_hotels_vanderbilt_beach": {
+        "label": "Hotels near Vanderbilt Beach",
+        "url": "https://www.booking.com/searchresults.html?ss=Vanderbilt+Beach%2C+Florida",
+        "partner": "booking",
+        "category": "hotels"
+    },
+    "booking_hotels_marco_island": {
+        "label": "Hotels on Marco Island",
+        "url": "https://www.booking.com/searchresults.html?ss=Marco+Island%2C+Florida",
+        "partner": "booking",
+        "category": "hotels"
+    },
+    "cars_rental_rsw": {
+        "label": "Compare Rental Cars at RSW Airport",
+        "url": "https://www.cars.com/rentals/?loc_id=RSW",
+        "partner": "cars",
+        "category": "cars"
+    },
+    "getyourguide_naples": {
+        "label": "Browse Naples Tours & Activities",
+        "url": "https://www.getyourguide.com/naples-florida-l97124",
+        "partner": "getyourguide",
+        "category": "tours"
+    }
+}
