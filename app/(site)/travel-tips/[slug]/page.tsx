@@ -10,7 +10,10 @@ import { getAuthorBySlug, getDefaultAuthor } from "@/src/lib/authors";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import { Disclosure } from "@/src/components/Disclosure";
 import { AffiliateCta } from "@/src/components/AffiliateCta";
+import { QuickSummary } from "@/src/components/QuickSummary";
 import { FAQ } from "@/src/components/FAQ";
+import { ExpertVerifiedBadge } from "@/src/components/EnterpriseComponents";
+import { ExpertTip, EditorNote, Rating, ProsCons, KeyStat } from "@/src/components/ContentComponents";
 import { RelatedPosts } from "@/src/components/RelatedPosts";
 import { Prose } from "@/src/components/Prose";
 import { SafeImage } from "@/src/components/SafeImage";
@@ -56,9 +59,14 @@ export function generateMetadata({
 }
 
 const mdxComponents = {
-    Disclosure,
     AffiliateCta,
+    QuickSummary,
     FAQ,
+    ExpertTip,
+    EditorNote,
+    Rating,
+    ProsCons,
+    KeyStat,
 };
 
 export default function TravelTipDetailPage({

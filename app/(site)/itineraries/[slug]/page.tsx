@@ -19,6 +19,7 @@ import { ReadingProgress } from "@/src/components/ReadingProgress";
 import { TableOfContents } from "@/src/components/TableOfContents";
 import { ShareButtons } from "@/src/components/ShareButtons";
 import { ExpertVerifiedBadge } from "@/src/components/EnterpriseComponents";
+import { ExpertTip, EditorNote, Rating, ProsCons, KeyStat } from "@/src/components/ContentComponents";
 
 export const dynamicParams = false;
 
@@ -61,10 +62,14 @@ export function generateMetadata({
 
 // MDX components available in content
 const mdxComponents = {
-    Disclosure,
     AffiliateCta,
     QuickSummary,
     FAQ,
+    ExpertTip,
+    EditorNote,
+    Rating,
+    ProsCons,
+    KeyStat,
 };
 
 const audienceLabels: Record<string, string> = {
