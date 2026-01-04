@@ -189,7 +189,7 @@ export default function HomePage() {
                     {/* Where to Stay - Wide */}
                     <Link href="/where-to-stay" className="group relative rounded-3xl overflow-hidden md:col-span-2 shadow-sm hover:shadow-xl transition-all h-[300px] md:h-auto">
                         <SafeImage
-                            src="/images/placeholders/vanderbilt_beach_resort_pool_4k.jpg" // Using existing 4k
+                            src="/images/placeholders/vanderbilt_beach_luxury_hotel_4k.jpg" // Using existing 4k
                             alt="Luxury Resorts"
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-700"
