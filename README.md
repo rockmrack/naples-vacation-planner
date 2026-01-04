@@ -1107,4 +1107,140 @@ a finalized affiliate-links.json starter set (with link IDs you’ll actually us
 a standardized CTA placement map per template (“above fold,” “day1,” “book-ahead,” etc.),
 and a week-by-week internal linking matrix (exact links each new post must add).
 
+---
+
+## How Affiliate Travel Sites Actually Make Money (Addendum)
+
+### 1) Reasoning and analysis (how affiliate travel sites actually make money)
+
+#### The key concept: you don't "sell" the hotel - you refer the booking
+For an affiliate-based tourism website, you typically do not process bookings or payments on your own site. Instead, you:
+
+- Publish travel planning content (itineraries, where-to-stay guides, day trips)
+- Place affiliate links (or a search widget) that send visitors to a booking partner (an OTA or tour platform)
+- If the visitor books after clicking your link, the partner attributes that booking to you and pays you a commission.
+
+So the transaction happens on the partner's site (booking platform / tour platform), not yours.
+
+#### What the user experiences
+A visitor will usually:
+
+1) Read your "Old Naples: Where to Stay" guide
+2) Click something like "Search hotels in Old Naples"
+3) Get redirected to the booking partner's results page already filtered to Naples/Old Naples
+4) Choose a hotel -> enter guest info -> pay on that platform
+5) Receive confirmation from the booking platform (not from you)
+
+#### How the tracking works (the technical "why you get paid" part)
+Affiliate programs track referrals using a combination of:
+
+- Your affiliate ID embedded in the URL (or in a redirect)
+- Cookies set when the visitor clicks your link
+- Sometimes additional tracking parameters like:
+	- `sub_id` / `click_id` / `utm_campaign` to identify which page or CTA placement caused the booking
+
+If the visitor books within the program's attribution rules (cookie window, device rules, etc.), the system logs:
+
+click -> booking -> commission
+
+#### Important realities (so you set expectations correctly)
+Not every click becomes a tracked booking. You will lose some attribution due to:
+
+- User switching devices (mobile -> desktop)
+- Ad blockers / cookie restrictions
+- Booking much later than the cookie window
+- User clicking other affiliate links after yours (last-click attribution is common)
+
+Many travel programs pay commissions only after:
+
+- the stay happens, or
+- the cancellation window closes
+
+This reduces fraud/cancellations, but it means payout is delayed.
+
+#### Ways it can look like "booking through your website" (without you actually taking payments)
+You can make it feel seamless by using:
+
+- Buttons ("Check availability")
+- Search widgets embedded on your pages (still affiliate-powered)
+- Hotel cards that deep-link to the booking partner
+
+But the checkout/payment is still on the partner site unless you become a full OTA/travel agent business (much more complex legally/technically).
+
+### 2) Conclusions and actionable recommendations (exact "how it would work" + what you should implement)
+
+#### A) Simple flow example (hotel booking)
+Here's the real-world flow for your site:
+
+1) Visitor lands on: `/where-to-stay/old-naples-neighborhood-guide`
+2) They click your button: "Search hotels in Old Naples"
+3) Your button URL is an affiliate deep link like:
+	 `https://PARTNER.com/search?destination=Naples+FL&aid=YOUR_AFFILIATE_ID&utm_source=naplesvacationplanner...`
+4) Partner records the click + sets tracking cookie
+5) Visitor books a hotel on the partner site
+6) Partner attributes the booking to your affiliate ID
+7) You earn a commission (percentage or fixed amount), paid later according to their schedule
+
+Answer to your question:
+Yes - someone books the hotel because of your website, but they usually book on the partner site, not directly on yours.
+
+#### B) Same concept for tours and day trips
+Example:
+
+1) Visitor reads your guide: "Everglades Day Trip from Naples"
+2) They click "Compare Everglades tours"
+3) You send them to a tours platform with your affiliate tracking
+4) They book there
+5) You earn a commission
+
+Tours often convert well because it's a single-decision purchase (one activity).
+
+#### C) What you need to implement on your site so this works reliably
+1) Affiliate links (centralized)
+- Store partner URLs + your affiliate IDs in one file (so you can update easily)
+- Use deep links:
+	- Naples hotels page
+	- Old Naples/Vanderbilt filtered results if supported
+	- Everglades tour category pages
+
+2) Clear CTAs in the right places
+Place "money buttons" where users are deciding:
+
+- Where-to-stay pages: "Check availability in Old Naples"
+- Itineraries: "Find hotels that match this itinerary"
+- Day trips: "Compare tours"
+- Do you need a car? page: "Compare rental cars (RSW/Naples)"
+
+3) Compliance
+- Put an affiliate disclosure near the top of pages with affiliate links
+- Mark affiliate links:
+	- `rel="sponsored nofollow noopener noreferrer"`
+
+4) Tracking (so you learn what earns)
+- Track affiliate clicks in GA4: page -> CTA placement -> partner
+- This tells you which pages are worth expanding.
+
+#### D) Do you ever "take the booking" on your website?
+Only if you build a different type of business:
+
+- You'd need booking tech, payment processing, customer support, cancellation handling, fraud risk, and often travel seller licensing depending on how you structure it.
+
+Given your choice (mostly digital/affiliate), your best model is:
+
+- Send them to trusted booking platforms to complete the purchase.
+
+#### E) Quick checklist to confirm your monetization is working
+Once affiliate links are live:
+
+1) Click your "Check availability" link
+2) Confirm the URL contains your affiliate tracking ID
+3) Confirm the link lands on the correct destination/results page
+4) Confirm GA4 logs the click event
+5) After some days/weeks (depending on partner), confirm you see:
+	 - clicks
+	 - bookings (may be delayed)
+	 - commissions
+
+If you tell me which hotel affiliate program you plan to use first (or the one you're applying for), I'll show you exactly what kinds of deep links you should create for Naples (generic Naples search vs Old Naples vs Vanderbilt Beach) and where each link should be placed across your first 15 pages for maximum conversions.
+
 
