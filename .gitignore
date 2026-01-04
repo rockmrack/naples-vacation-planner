@@ -43,3 +43,6 @@ next-env.d.ts
 
 # Misc
 *.log
+
+# Accidental nested workspace copy
+naples-vacation-planner/

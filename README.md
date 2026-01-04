@@ -154,3 +154,474 @@ Run:- install- lint- typecheck- build
 ## 21) Notes on Legal/ComplianceThis project is not a travel agency and does not provide guarantees for third-party services.Always disclose affiliate relationships clearly.
 ---
 ## 22) Implementation Order (Builder Task List)1. Scaffold Next.js app (TS + Tailwind)2. Create repo structure + configs3. Implement site config (`site.ts`)4. Implement MDX content loader + Zod validation5. Implement content pages (hub pages + [slug] detail pages)6. Implement affiliate CTA + tracking7. Implement legal pages + contact8. Implement sitemap + robots9. Deploy to Vercel10. (Later) Connect Hostinger DNS to Vercel + set up email + GSC + GA4
+
+---
+## 23) Handoff Instructions — “Google Antigravity” (Continue Work)
+
+You are taking over an existing Next.js + MDX affiliate SEO site repo. Your job is to keep improving the site quality and SEO based on the audit goals (fix trust-killers, fill thin hubs, and ship publishable starter content).
+
+### Operating rules
+- Do NOT add new UI/UX features beyond what is required to fix the audit issues (no new pages, no new themes, no animations).
+- Prefer small, surgical PRs. Keep changes minimal and consistent with existing patterns.
+- Build must remain green: `npm run build` must pass.
+- Run Snyk Code scan on any new/changed first-party code and fix issues it reports.
+
+### 0) Ground truth about the repo structure (IMPORTANT)
+- The real app lives at the repo root: `app/`, `content/`, `src/`, `public/`, etc.
+- There may also be a nested folder named `naples-vacation-planner/` created accidentally during earlier work. Treat that nested folder as a duplicate and do not develop there. Only edit the root app.
+
+### 1) Immediate P0 objectives (trust + SEO)
+1) Remove “broken image” experiences site-wide.
+	- If `featuredImage` points to a file that doesn’t exist, cards and detail pages currently show broken thumbnails.
+	- Implement a safe fallback strategy:
+	  - Add placeholder images in `public/images/placeholders/` (SVG is fine).
+	  - Use a resilient image component (e.g., a tiny client wrapper) that swaps to a placeholder on error.
+	  - Update listing cards (hub pages, related posts, homepage) to use the safe component.
+
+2) Ensure hubs are not “thin” placeholders.
+	- Each hub page (itineraries, where-to-stay, day-trips, travel-tips, maps) should have:
+	  - A real intro paragraph (who it’s for + what it covers)
+	  - At least a few items so the grid doesn’t look empty
+	- If inventory is still low (1–2 items), center the grid and cap width so it doesn’t look broken.
+
+3) Maps section must not be a placeholder.
+	- Create at least 1–2 real map MDX entries.
+	- Prefer practical “how to use it” guidance (parking/access, neighborhoods, etc.).
+
+### 2) Content creation requirements (MDX)
+This codebase uses strict Zod frontmatter validation. When adding MDX, you MUST satisfy the per-type schema:
+- All types: `title`, `description`, `slug`, `type`, `status`, `publishedAt`, `updatedAt`, `author`, `tags`, `featuredImage` (required).
+- Itinerary: `days`, `pace`, `audience`, `bookAhead` (and optional `mapEmbedUrl`).
+- Where-to-stay: `areaName`, `bestFor`, `avoidIf`, `nearbyHighlights`.
+- Day-trip: `driveTimeFromNaples`, `bestSeason`, `mustBook`.
+- Map: optional `downloadUrl`, optional `mapEmbedUrl`.
+
+Create a minimum “starter pack” so hubs look real:
+- 1 new itinerary
+- 1 new where-to-stay
+- 1 new day-trip
+- 1 new travel-tip
+- 1 new map
+
+Avoid unverifiable specifics (hours/fees) unless you cite an official source.
+
+### 3) SEO/internal linking checklist (apply to every new guide)
+- Add `<Disclosure />` near the top.
+- Add a quick summary section if the page type supports it.
+- Include 3–6 internal links across hubs (itinerary ↔ where-to-stay ↔ day-trips ↔ travel-tips ↔ maps).
+- Add a small FAQ where appropriate.
+- Add/update “Last updated” metadata in frontmatter (`updatedAt`) and keep it current.
+
+### 4) Validation steps (run these before shipping)
+1) Install: `npm install`
+2) Build: `npm run build`
+3) Snyk Code scan the project root (fix any findings)
+4) Sanity-check a few pages in dev: `npm run dev`
+
+### 5) Deliverable expectation
+- The site should have no broken thumbnails, hubs should feel populated, and the Maps section should be real.
+- Keep everything consistent with the existing design system and component patterns.
+
+---
+
+# Naples Vacation Planner — Improvement & Monetization Build Plan
+**Goal:** Turn the existing UI shell into a production-grade, SEO-ready, affiliate-monetized Naples, Florida tourism planning site.
+
+This document is a detailed backlog + implementation instructions to fix the current gaps (no content/images) and to make the site earn revenue.
+
+---
+
+## 1) Current State (Observed)
+### Working
+- Brand + navigation exist (Itineraries / Where to Stay / Day Trips / Travel Tips / Maps).
+- Homepage funnel exists (hero CTAs + planning cards + “Latest Guides” section).
+- Breadcrumb pattern exists on hub pages.
+- Footer exists (with legal link categories shown in screenshot).
+
+### Broken / Missing
+- No images exist → broken thumbnails and gray blocks.
+- Minimal/no articles exist → hub pages show 1 card and lots of empty space.
+- Maps page is “Coming Soon” → thin/low-value page if indexed.
+- Monetization not implemented (no affiliate links, no tracking, no email capture).
+- SEO fundamentals need verification (metadata/canonical/sitemap/robots/schema).
+
+---
+
+## 2) Success Criteria (Definition of “Done”)
+### UX/Trust
+- No broken images anywhere (cards always show a valid thumbnail).
+- Hub pages look intentional even with small inventory (center layout + “More coming soon”).
+- Every content page shows: title, last updated, disclosure, internal links.
+
+### SEO
+- `/robots.txt` and `/sitemap.xml` return 200 and reflect only “published” pages.
+- Canonical URLs are consistent (`naplesvacationplanner.com` chosen as primary later).
+- Schema exists: Organization + WebSite + Article + BreadcrumbList + FAQPage (where applicable).
+- Core Web Vitals are strong (fast, minimal JS, optimized images).
+
+### Monetization
+- Affiliate CTA system exists (central link dictionary + compliant rel attributes).
+- Outbound affiliate clicks are tracked (GA4 event).
+- Email lead magnet + signup exists (to build an owned audience).
+
+---
+
+## 3) Phase 0 — Safety / Indexing Control (Do Immediately)
+**Problem:** Vercel preview/production URLs can accidentally get indexed before the real domain is connected.
+
+### Task: Add a launch indexing switch
+- Add env var: `ALLOW_INDEXING=false` (Vercel + local).
+- In `app/robots.ts`, disallow indexing unless `ALLOW_INDEXING=true`.
+
+**Acceptance test:**
+- When `ALLOW_INDEXING=false`, `robots.txt` disallows all.
+- When `ALLOW_INDEXING=true`, `robots.txt` allows and references sitemap.
+
+---
+
+## 4) Phase 1 — Fix Broken Images (P0)
+**Problem:** Cards show broken thumbnails because there are no images.
+
+### Task A: Add placeholder images (fastest correct fix)
+Create:
+- `/public/images/placeholders/itinerary.svg`
+- `/public/images/placeholders/where-to-stay.svg`
+- `/public/images/placeholders/day-trip.svg`
+- `/public/images/placeholders/travel-tip.svg`
+- `/public/images/placeholders/map.svg`
+
+These SVGs should be high-resolution (1200x630) and on-brand.
+
+### Task B: Add a default/fallback card image
+In your Card component (or wherever thumbnails are rendered):
+- If `featuredImage` is missing/empty → fall back to a type-based placeholder:
+	- itinerary → `/images/placeholders/itinerary.svg`
+	- where-to-stay → `/images/placeholders/where-to-stay.svg`
+	- day-trip → `/images/placeholders/day-trip.svg`
+	- travel-tip → `/images/placeholders/travel-tip.svg`
+	- map → `/images/placeholders/map.svg`
+
+**Acceptance tests:**
+- Delete/omit featuredImage in one post and confirm UI still looks clean (no broken image icon, no blank gray box).
+- Lighthouse: no layout shift from image loading.
+
+---
+
+## 5) Phase 2 — Create MVP Content (P0)
+**Problem:** The site cannot rank or earn without real pages.
+
+### Content rules (MVP quality)
+Each guide must include:
+- Affiliate disclosure near top (even if no affiliate links yet)
+- Clear sections (H2/H3)
+- Practical Naples-specific details (seasonality and “book ahead” notes)
+- 3–8 FAQs at bottom
+- At least 3 internal links to other site pages
+
+### Minimum MVP library (publish these first)
+Create MDX files in `/content`:
+
+#### Itineraries (at least 3)
+- Naples 2-day itinerary (couples weekend)
+- Naples 3-day itinerary (first timers)
+- Naples 5-day itinerary (families) **(high priority; family searches are huge)**
+
+#### Where to stay (at least 4)
+- Old Naples guide (walkability, classic vibe)
+- Vanderbilt Beach guide (beach-first base)
+- Park Shore / Venetian Village guide (upscale, central)
+- Pelican Bay guide (resort-like upscale)
+
+#### Day trips (at least 3)
+- Everglades day trip from Naples (realistic plan)
+- Marco Island day trip from Naples
+- Ten Thousand Islands: how to choose tours (boat vs kayak)
+
+#### Travel tips (at least 3)
+- Best time to visit Naples (month-by-month)
+- Rainy day Naples (families + couples)
+- Do you need a car in Naples?
+
+#### Maps (at least 1 “real” page)
+- Naples Beach Parking & Access Map (starter guide)
+	- If map embed is not ready, include a structured “how to plan parking/timing” guide and mark it as “map embed coming soon” inside content, but the page must still be useful.
+
+**Important:** Do NOT keep “Maps Coming Soon” as the only content. Either:
+- publish at least 1 real Maps guide, OR
+- remove Maps from top nav until it has at least 1 published page.
+
+**Acceptance tests:**
+- Home “Latest Guides” shows 3–6 real posts.
+- Each hub page (Itineraries/Where to Stay/Day Trips/Travel Tips/Maps) shows at least 2 items (Maps at least 1).
+
+---
+
+## 6) Phase 3 — Fix Hub Page Layout for Small Inventory (P0)
+**Problem:** When there’s only 1 post, it sits left and looks unfinished.
+
+### Task: Responsive “empty state” rules
+If a hub has:
+- 0 posts → show an intentional empty state + link back to Home + newsletter signup
+- 1–2 posts → center the grid and add a “More coming weekly” block
+- 3+ posts → normal grid
+
+**Acceptance test:**
+- With 1 post, the card is centered and the page looks intentional.
+
+---
+
+## 7) Phase 4 — Article Template Upgrades (P1)
+**Goal:** Make every content page conversion-ready and SEO-friendly.
+
+### Must-have components/sections
+1. **Disclosure** (FTC) near top
+2. **Quick Summary** (especially for itineraries)
+	 - who it’s for, pace, best season, must-book items
+3. **Table of contents** (auto-generated)
+4. **“What to book early (Jan–Apr)”** section for Naples seasonality
+5. **FAQs** (3–8) + FAQ schema output
+6. **Related Posts** block
+7. **Last updated date** visible
+
+**Acceptance tests:**
+- Every itinerary page has quick summary + book-ahead + FAQs + related.
+- Only one H1 per page.
+
+---
+
+## 8) Phase 5 — Technical SEO Checklist (P1)
+### A) Metadata rules
+- Title template: `{{Page Title}} | Naples Vacation Planner`
+- Meta description: 120–160 chars, includes “Naples, Florida”
+- OpenGraph/Twitter cards set
+- Canonical URL set (must match production domain when launched)
+
+### B) Sitemap + robots
+- `/sitemap.xml` includes only published content
+- `/robots.txt` controlled by `ALLOW_INDEXING`
+
+### C) Schema (JSON-LD)
+Implement:
+- Organization (site-wide)
+- WebSite + SearchAction (site-wide)
+- BreadcrumbList (content pages + hubs)
+- Article (content pages)
+- FAQPage (when FAQs exist)
+
+**Acceptance test:**
+- Validate with Google Rich Results Test (no errors).
+
+---
+
+## 9) Phase 6 — Analytics & Tracking (P1)
+### GA4
+- Add GA4 only after cookie consent strategy is decided (best practice), but minimally:
+	- track page views
+	- track affiliate clicks
+
+### Affiliate click event
+Event name: `affiliate_click`
+Params:
+- `partner`
+- `link_id`
+- `placement`
+- `page_path`
+
+**Acceptance test:**
+- Click any affiliate CTA and see event in GA4 DebugView.
+
+---
+
+## 10) Phase 7 — Monetization Implementation (P1/P2)
+### Step A: Affiliate stack (recommended order for Naples)
+1) **Hotels** (highest payout potential in Naples)
+2) **Tours/activities** (sunset cruises, wildlife tours, Everglades)
+3) **Car rentals** (day trips convert well)
+4) Add-ons: travel insurance, eSIM, Amazon packing list
+
+### Step B: Centralize affiliate URLs
+Create `src/data/affiliate-links.json` with:
+- id
+- label
+- url (with affiliate ID + UTMs)
+- partner name
+
+### Step C: Place CTAs in “decision moments”
+- Itineraries: CTA after each day plan (“Book a sunset cruise”)
+- Where-to-stay: CTA in “Booking strategy” section (“Search hotels in Old Naples”)
+- Day trips: CTA after explaining tour style choice (“Compare tours”)
+
+### Compliance requirements
+- Per-page disclosure near top
+- Affiliate link `rel="sponsored nofollow noopener noreferrer"`
+- Dedicated `/affiliate-disclosure` page
+
+---
+
+## 11) Phase 8 — Email List (High ROI for affiliate)
+### Lead magnet
+Create a free download:
+- “Naples 3-Day Itinerary PDF + Packing Checklist”
+
+### Email provider
+Choose one:
+- ConvertKit
+- MailerLite
+- Beehiiv
+
+### Email capture placement
+- Homepage (mid-page + footer)
+- End of every itinerary post
+- Exit-intent optional later
+
+### Welcome sequence (minimum 5 emails)
+1) Deliver itinerary PDF
+2) Where to stay: Old Naples vs Vanderbilt
+3) Day trip: Everglades vs Marco Island
+4) What to book early in Jan–Apr
+5) Packing + rainy-day plan
+
+**Acceptance test:**
+- Subscriber receives email 1 instantly and sequence is scheduled.
+
+---
+
+## 12) Deployment Plan (Hostinger domain → Vercel, later)
+When ready for production:
+1) Add `naplesvacationplanner.com` + `www` in Vercel Domains
+2) Update Hostinger DNS:
+	 - `A` @ → `76.76.21.21`
+	 - `CNAME` www → `cname.vercel-dns.com`
+3) Set primary domain in Vercel
+4) Flip `ALLOW_INDEXING=true`
+5) Add Google Search Console + submit sitemap
+
+---
+
+## 13) Ongoing Operations (SOP)
+### Monthly
+- Update “Best time to visit Naples” month-by-month notes
+- Refresh any guides with seasonal changes
+- Check Google Search Console queries:
+	- improve titles/meta where impressions are high but CTR is low
+
+### Quarterly
+- Broken link check
+- Update affiliate links/UTMs
+- Add 5–10 new content pieces (focus on high-intent itinerary + where-to-stay)
+
+---
+
+## 14) Naples-Specific Content Roadmap (High-Intent Targets)
+Prioritize these topics early because they convert:
+- “Naples vs Marco Island: where to stay”
+- “Best area to stay in Naples for first time visitors”
+- “Naples Florida 5-day itinerary with kids”
+- “Best beaches in Naples with easiest parking”
+- “Everglades City day trip from Naples itinerary”
+
+Seasonality pages:
+- “Naples in February: what to book early”
+- “Naples in July: realistic plan (heat + storms)”
+
+---
+
+# How you can make money with this website (realistic, step-by-step)
+
+## 1) Reasoning and analysis (best monetization for Naples + your model)
+You’re building:
+
+- A planning-focused website (itineraries + where to stay + day trips)
+- In an affluent, high-spend destination (Naples)
+- With strong seasonality (Jan–Apr peak)
+
+This is ideal for affiliate monetization because:
+
+- Where-to-stay content converts into hotel bookings (often the biggest commission dollars).
+- Itinerary and day-trip content converts into tour bookings and car rentals.
+- The “book early” dynamic in Naples peak season increases urgency and conversion.
+
+The obstacle: early traffic is low. So your monetization must:
+
+- Work even with low traffic (affiliate can)
+- Improve as traffic grows (ads later, sponsorship later)
+
+## 2) Conclusions and actionable recommendations (exact monetization roadmap)
+
+### Phase 1 (Weeks 1–4): Monetize immediately with affiliate links in high-intent pages
+**What to do**
+
+- Join 1 tours affiliate + 1 hotels affiliate + 1 car rental affiliate.
+- Tours/activities: Viator or GetYourGuide (broad inventory; good for Everglades / boat tours)
+- Hotels: Booking/Expedia-style program (or via an affiliate network if direct is hard)
+- Car rentals: Discover Cars (or similar)
+- Implement your centralized link file (affiliate-links.json) and CTA blocks.
+- Add CTAs only in places that match user intent:
+	- itinerary day sections
+	- “where to stay” booking strategy
+	- day trip “choose your tour type” section
+
+**Where the money will come from first**
+
+- “Search hotels in Naples” CTAs inside Old Naples / Vanderbilt guides
+- “Book a tour” CTAs inside Everglades day trip and Ten Thousand Islands guides
+
+### Phase 2 (Month 2–3): Build an email list (this multiplies affiliate earnings)
+**What to do**
+
+- Create a lead magnet (PDF itinerary).
+- Put email opt-in on:
+	- homepage
+	- end of each itinerary
+- Build a 5-email sequence with affiliate links (with disclosure).
+
+**Why this matters**
+
+- Email converts better than cold search traffic.
+- It’s insurance against Google algorithm changes.
+
+### Phase 3 (After consistent traffic): Add display ads
+**When to do it**
+
+- If you start hitting meaningful traffic (example: several thousand sessions/month), you can test Google AdSense.
+- Later, if you reach higher thresholds, you can apply to premium networks (requirements vary; don’t count on them early).
+
+**Important**
+
+- Ads can reduce UX; don’t add them until you have enough volume that it’s worth it.
+
+### Phase 4 (Later, optional): Sponsored posts + direct local referral deals
+Even if you’re “mostly digital,” you can still do low-ops partnerships:
+
+- Local tour operator pays a fixed monthly “featured placement” fee
+- Or fixed referral fee per booking (tracked via code/link)
+
+This becomes easier once you have:
+
+- traffic
+- rankings
+- email list
+
+### Phase 5 (Optional, high margin): Sell digital products
+Once your content is strong:
+
+- $9–$29 PDF bundle:
+	- “Naples 3-day / 5-day itineraries”
+	- “Beach parking map”
+	- “Family plan + rainy day plan”
+
+This can be layered on top of affiliate revenue.
+
+### What to expect (realistic)
+- Early phase: you may earn little to nothing until you have content + some traffic.
+- Once you have 20–50 quality pages + some rankings plus a basic email list, you can start seeing meaningful affiliate revenue, especially during Jan–Apr.
+- No one can guarantee numbers, but Naples is a strong market for higher-value bookings.
+
+### Optional: “Earnings Architecture” (next step)
+If you share which affiliate programs you plan to use first, we can define:
+
+- exact CTA placements per page type
+- which pages to write first for fastest commissions
+- a 12-week publishing schedule timed for Naples seasonality (peak season ramp)
+
+
