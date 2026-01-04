@@ -1,27 +1,25 @@
 "use client";
 
 import * as React from "react";
+import Image, { ImageProps } from "next/image";
 
-type SafeImageProps = {
-    src: string;
-    alt: string;
-    className?: string;
-    fallbackSrc: string;
+type SafeImageProps = Omit<ImageProps, 'src'> & {
+    src?: string | null;
+    fallbackSrc?: string;
 };
 
-export function SafeImage({ src, alt, className, fallbackSrc }: SafeImageProps) {
-    const [currentSrc, setCurrentSrc] = React.useState(src);
+export function SafeImage({ src, alt, fallbackSrc = "/images/placeholders/travel-tip.svg", ...props }: SafeImageProps) {
+    const [currentSrc, setCurrentSrc] = React.useState<string>(src || fallbackSrc);
 
     React.useEffect(() => {
-        setCurrentSrc(src);
+        if (src) setCurrentSrc(src);
     }, [src]);
 
     return (
-        <img
+        <Image
+            {...props}
             src={currentSrc}
             alt={alt}
-            className={className}
-            loading="lazy"
             onError={() => {
                 if (currentSrc !== fallbackSrc) setCurrentSrc(fallbackSrc);
             }}

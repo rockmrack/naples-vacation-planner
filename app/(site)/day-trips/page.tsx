@@ -9,7 +9,7 @@ import { SafeImage } from "@/src/components/SafeImage";
 export const metadata: Metadata = {
     title: "Day Trips from Naples, Florida – Marco Island, Everglades & More",
     description:
-        "Explore beyond Naples with day trips to Marco Island, Everglades National Park, Ten Thousand Islands, and more. Complete guides with drive times and booking tips.",
+        "Expert-curated day trips from Naples. Explore Marco Island, the Everglades, and Ten Thousand Islands with our fact-checked guides and driving itineraries.",
     alternates: {
         canonical: `${site.url}/day-trips`,
     },
@@ -25,92 +25,196 @@ export default function DayTripsPage() {
     }
 
     return (
-        <div className="section-container py-12">
-            <Breadcrumbs items={[{ label: "Day Trips" }]} />
+        <>
+            {/* Hero Section - Enterprise Grade */}
+            <section className="relative py-20 lg:py-28 overflow-hidden">
+                {/* Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-sunset-900 to-gray-900" />
+                <div className="absolute inset-0 hero-pattern opacity-20" />
 
-            {/* Hero */}
-            <div className="text-center mb-12">
-                <h1 className="text-4xl sm:text-5xl font-bold font-display text-gray-900">
-                    Day Trips from Naples
-                </h1>
-                <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                    Naples is the perfect base for exploring Southwest Florida. Discover
-                    pristine islands, wild Everglades, and charming coastal towns.
-                </p>
+                {/* Decorative blobs */}
+                <div className="absolute top-10 left-10 w-64 h-64 bg-sunset-500/10 rounded-full blur-3xl animate-pulse-soft" />
+                <div className="absolute bottom-10 right-10 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl animate-float" />
+
+                <div className="relative section-container">
+                    <Breadcrumbs
+                        items={[{ label: "Day Trips" }]}
+                        className="text-white/60 mb-8"
+                    />
+
+                    <div className="max-w-4xl">
+                        <div className="flex flex-wrap items-center gap-3 mb-6">
+                            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sunset-900/50 border border-sunset-700 text-sunset-300 text-xs font-bold uppercase tracking-wider">
+                                Expert Guides
+                            </span>
+                            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-900/50 border border-emerald-700 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+                                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                                </svg>
+                                Fact-Checked
+                            </span>
+                        </div>
+
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display text-white leading-tight mb-6">
+                            Day Trips from<br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sunset-300 to-orange-300">
+                                Naples, Florida
+                            </span>
+                        </h1>
+
+                        <p className="text-xl text-slate-300 leading-relaxed max-w-2xl">
+                            Naples is the perfect launchpad. Discover pristine islands,
+                            wild national parks, and charming coastal towns within a short drive.
+                        </p>
+
+                        {/* Quick destination links */}
+                        <div className="mt-10 flex flex-wrap gap-3">
+                            {["Marco Island", "Everglades", "Ten Thousand Islands"].map((dest) => (
+                                <span
+                                    key={dest}
+                                    className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white text-sm font-medium transition-all"
+                                >
+                                    {dest}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Trust Bar */}
+            <div className="border-b border-gray-100 bg-white">
+                <div className="section-container py-4">
+                    <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
+                        <span className="flex items-center gap-1.5">
+                            <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                            </svg>
+                            Verified Drive Times
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                            <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                            </svg>
+                            Booking Tips
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                            <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                            </svg>
+                            Local Secrets
+                        </span>
+                    </div>
+                </div>
             </div>
 
-            {/* Day Trips Grid */}
-            {dayTrips.length > 0 ? (
-                <div
-                    className={
-                        dayTrips.length === 1
-                            ? "grid grid-cols-1 gap-8 justify-items-center"
-                            : dayTrips.length === 2
-                                ? "grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
-                                : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                    }
-                >
-                    {dayTrips.map((doc) => {
-                        const fm = doc.frontmatter as DayTripFrontmatter;
-                        return (
-                            <Link
-                                key={fm.slug}
-                                href={`/day-trips/${fm.slug}`}
-                                className={
-                                    dayTrips.length === 1
-                                        ? "group card overflow-hidden w-full max-w-xl"
-                                        : "group card overflow-hidden"
-                                }
-                            >
-                                {/* Image */}
-                                <div className="aspect-[16/10] bg-gray-100 relative overflow-hidden">
-                                    <SafeImage
-                                        src={fm.featuredImage}
-                                        fallbackSrc="/images/placeholders/day-trip.svg"
-                                        alt={fm.featuredImageAlt || fm.title}
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    />
-                                    <div className="absolute top-3 left-3">
-                                        <span className="px-3 py-1 rounded-full bg-sunset-500 text-white text-sm font-semibold shadow-lg">
-                                            🚗 {fm.driveTimeFromNaples}
-                                        </span>
+            {/* Main Content */}
+            <section className="section-container py-16 bg-gray-50">
+                {dayTrips.length > 0 ? (
+                    <div
+                        className={
+                            dayTrips.length === 1
+                                ? "grid grid-cols-1 gap-8 justify-items-center"
+                                : dayTrips.length === 2
+                                    ? "grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+                                    : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                        }
+                    >
+                        {dayTrips.map((doc, index) => {
+                            const fm = doc.frontmatter as DayTripFrontmatter;
+                            const isNew = new Date(fm.publishedAt) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+
+                            return (
+                                <Link
+                                    key={fm.slug}
+                                    href={`/day-trips/${fm.slug}`}
+                                    className={`group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col ${dayTrips.length === 1 ? "w-full max-w-xl" : ""
+                                        }`}
+                                    style={{ animationDelay: `${index * 100}ms` }}
+                                >
+                                    {/* Image */}
+                                    <div className="aspect-[16/10] bg-gray-100 relative overflow-hidden">
+                                        <SafeImage
+                                            src={fm.featuredImage}
+                                            fallbackSrc="/images/placeholders/day-trip.svg"
+                                            alt={fm.featuredImageAlt || fm.title}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                        />
+
+                                        {/* Gradient overlay on hover */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+
+                                        {/* Top badges */}
+                                        <div className="absolute top-3 left-3 flex gap-2">
+                                            <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-gray-900 text-xs font-bold shadow-lg flex items-center gap-1">
+                                                🚗 {fm.driveTimeFromNaples}
+                                            </span>
+                                            {isNew && (
+                                                <span className="px-3 py-1 rounded-full bg-sunset-600 text-white text-xs font-bold shadow-lg">
+                                                    New
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        {/* Verify Badge */}
+                                        <div className="absolute bottom-3 left-3">
+                                            <span className="px-2 py-1 rounded-lg bg-green-500/90 backdrop-blur-sm text-white text-[10px] font-bold shadow-lg flex items-center gap-1">
+                                                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                                                </svg>
+                                                VERIFIED
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
 
-                                {/* Content */}
-                                <div className="p-6">
-                                    <h2 className="font-bold text-xl text-gray-900 group-hover:text-ocean-600 transition-colors line-clamp-2">
-                                        {fm.title}
-                                    </h2>
-                                    <p className="mt-2 text-gray-600 text-sm line-clamp-2">
-                                        {fm.description}
-                                    </p>
+                                    {/* Content */}
+                                    <div className="p-6 flex-1 flex flex-col">
+                                        <h2 className="font-bold text-xl text-gray-900 group-hover:text-sunset-600 transition-colors line-clamp-2 mb-2">
+                                            {fm.title}
+                                        </h2>
+                                        <p className="text-gray-600 text-sm line-clamp-2 mb-4 flex-1">
+                                            {fm.description}
+                                        </p>
 
-                                    {/* Tags */}
-                                    <div className="mt-4 flex flex-wrap gap-2">
-                                        <span className="px-2 py-1 rounded-full text-xs font-medium bg-sunset-100 text-sunset-700">
-                                            Best: {fm.bestSeason}
-                                        </span>
+                                        {/* Tags */}
+                                        <div className="flex flex-wrap gap-2 mb-5">
+                                            <span className="px-2 py-1 rounded-md bg-sunset-50 text-sunset-700 text-xs font-medium border border-sunset-100">
+                                                Best in {fm.bestSeason}
+                                            </span>
+                                            {fm.mustBook && fm.mustBook.length > 0 && (
+                                                <span className="px-2 py-1 rounded-md bg-amber-50 text-amber-700 text-xs font-medium border border-amber-100">
+                                                    Book ahead
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        {/* Footer */}
+                                        <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+                                            <span className="text-xs text-gray-500 font-medium">{doc.readingTime} read</span>
+                                            <span className="text-sm font-bold text-sunset-600 group-hover:text-sunset-700 flex items-center gap-1">
+                                                Read guide
+                                                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </span>
+                                        </div>
                                     </div>
-
-                                    <p className="mt-4 text-xs text-gray-500">{doc.readingTime}</p>
-                                </div>
-                            </Link>
-                        );
-                    })}
-                </div>
-            ) : (
-                <div className="text-center py-16 bg-gray-50 rounded-2xl">
-                    <span className="text-6xl">🚗</span>
-                    <h2 className="mt-4 text-xl font-bold text-gray-900">
-                        Day Trip Guides Coming Soon
-                    </h2>
-                    <p className="mt-2 text-gray-600">
-                        We&apos;re creating detailed day trip guides from Naples. Check back
-                        soon!
-                    </p>
-                </div>
-            )}
-        </div>
+                                </Link>
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <div className="text-center py-20 bg-white rounded-3xl border border-gray-100 shadow-sm max-w-3xl mx-auto">
+                        <span className="text-6xl mb-4 block">🚗</span>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                            Day Trip Guides Coming Soon
+                        </h2>
+                        <p className="text-gray-600 max-w-md mx-auto">
+                            We're mapping out the best day trips from Naples. Check back soon for detailed guides.
+                        </p>
+                    </div>
+                )}
+            </section>
+        </>
     );
 }
