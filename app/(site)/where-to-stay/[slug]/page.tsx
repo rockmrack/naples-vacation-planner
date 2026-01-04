@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import { Disclosure } from "@/src/components/Disclosure";
 import { AffiliateCta } from "@/src/components/AffiliateCta";
 import { FAQ } from "@/src/components/FAQ";
+import { QuickSummary } from "@/src/components/QuickSummary";
 import { RelatedPosts } from "@/src/components/RelatedPosts";
 import { Prose } from "@/src/components/Prose";
 import { SafeImage } from "@/src/components/SafeImage";
@@ -52,6 +53,8 @@ const mdxComponents = {
     Disclosure,
     AffiliateCta,
     FAQ,
+    QuickSummary,
+    SafeImage,
 };
 
 export default function WhereToStayDetailPage({

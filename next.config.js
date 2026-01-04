@@ -5,6 +5,13 @@ const nextConfig = {
         domains: [],
         formats: ["image/avif", "image/webp"],
     },
+    webpack: (config) => {
+        config.watchOptions = {
+            ...config.watchOptions,
+            ignored: ['**/naples-vacation-planner/**', '**/node_modules/**'],
+        };
+        return config;
+    },
 };
 
 module.exports = nextConfig;

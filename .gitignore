@@ -46,3 +46,6 @@ next-env.d.ts
 
 # Accidental nested workspace copy
 naples-vacation-planner/
+
+# Snyk Security Extension - AI Rules (auto-generated)
+.github/instructions/snyk_rules.instructions.md

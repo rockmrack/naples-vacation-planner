@@ -6,6 +6,7 @@ import { getAllSlugs, getDocBySlug } from "@/src/lib/content";
 import { isMap, type MapFrontmatter } from "@/src/lib/content-schema";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import { Disclosure } from "@/src/components/Disclosure";
+import { QuickSummary } from "@/src/components/QuickSummary";
 import { Prose } from "@/src/components/Prose";
 import { SafeImage } from "@/src/components/SafeImage";
 
@@ -47,6 +48,8 @@ export function generateMetadata({
 
 const mdxComponents = {
     Disclosure,
+    QuickSummary,
+    SafeImage,
 };
 
 export default function MapDetailPage({

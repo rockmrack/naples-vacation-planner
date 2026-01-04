@@ -58,6 +58,7 @@ const mdxComponents = {
     AffiliateCta,
     QuickSummary,
     FAQ,
+    SafeImage,
 };
 
 const audienceLabels: Record<string, string> = {
