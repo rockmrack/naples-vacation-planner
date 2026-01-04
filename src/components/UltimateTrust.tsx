@@ -108,8 +108,8 @@ export function MediaFeaturesSection() {
 // ========================================
 
 interface FactCheckedBadgeProps {
-    reviewer: string;
-    reviewDate: string;
+    reviewer?: string;
+    reviewDate?: string;
     variant?: "large" | "small" | "inline";
 }
 
