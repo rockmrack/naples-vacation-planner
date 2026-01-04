@@ -4,6 +4,7 @@ import { site } from "@/src/config/site";
 import { getAllDocsByType } from "@/src/lib/content";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import type { DayTripFrontmatter } from "@/src/lib/content-schema";
+import { SafeImage } from "@/src/components/SafeImage";
 
 export const metadata: Metadata = {
     title: "Day Trips from Naples, Florida – Marco Island, Everglades & More",
@@ -40,20 +41,33 @@ export default function DayTripsPage() {
 
             {/* Day Trips Grid */}
             {dayTrips.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    className={
+                        dayTrips.length === 1
+                            ? "grid grid-cols-1 gap-8 justify-items-center"
+                            : dayTrips.length === 2
+                                ? "grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+                                : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    }
+                >
                     {dayTrips.map((doc) => {
                         const fm = doc.frontmatter as DayTripFrontmatter;
                         return (
                             <Link
                                 key={fm.slug}
                                 href={`/day-trips/${fm.slug}`}
-                                className="group card overflow-hidden"
+                                className={
+                                    dayTrips.length === 1
+                                        ? "group card overflow-hidden w-full max-w-xl"
+                                        : "group card overflow-hidden"
+                                }
                             >
                                 {/* Image */}
                                 <div className="aspect-[16/10] bg-gray-100 relative overflow-hidden">
-                                    <img
+                                    <SafeImage
                                         src={fm.featuredImage}
-                                        alt={fm.title}
+                                        fallbackSrc="/images/placeholders/day-trip.svg"
+                                        alt={fm.featuredImageAlt || fm.title}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                     />
                                     <div className="absolute top-3 left-3">

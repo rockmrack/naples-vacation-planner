@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ContentDoc } from "@/src/lib/content";
+import { SafeImage } from "@/src/components/SafeImage";
 
 interface RelatedPostsProps {
     posts: ContentDoc[];
@@ -57,8 +58,9 @@ export function RelatedPosts({
                             <article className="card p-4 h-full flex flex-col">
                                 {/* Featured Image */}
                                 <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-gray-100 mb-4">
-                                    <img
+                                    <SafeImage
                                         src={post.frontmatter.featuredImage}
+                                        fallbackSrc="/images/placeholders/travel-tip.svg"
                                         alt={post.frontmatter.featuredImageAlt || post.frontmatter.title}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                     />

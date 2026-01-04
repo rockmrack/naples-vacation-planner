@@ -7,6 +7,7 @@ import { isMap, type MapFrontmatter } from "@/src/lib/content-schema";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import { Disclosure } from "@/src/components/Disclosure";
 import { Prose } from "@/src/components/Prose";
+import { SafeImage } from "@/src/components/SafeImage";
 
 export const dynamicParams = false;
 
@@ -132,8 +133,9 @@ export default function MapDetailPage({
             {/* Featured Image (if no embed) */}
             {!fm.mapEmbedUrl && (
                 <div className="mb-8 rounded-2xl overflow-hidden shadow-xl">
-                    <img
+                    <SafeImage
                         src={fm.featuredImage}
+                        fallbackSrc="/images/placeholders/map.svg"
                         alt={fm.featuredImageAlt || fm.title}
                         className="w-full aspect-[16/9] object-cover"
                     />

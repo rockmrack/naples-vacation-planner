@@ -4,6 +4,7 @@ import { site } from "@/src/config/site";
 import { getAllDocsByType } from "@/src/lib/content";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import type { WhereToStayFrontmatter } from "@/src/lib/content-schema";
+import { SafeImage } from "@/src/components/SafeImage";
 
 export const metadata: Metadata = {
     title: "Where to Stay in Naples, Florida – Neighborhood Guide",
@@ -40,20 +41,31 @@ export default function WhereToStayPage() {
 
             {/* Neighborhoods Grid */}
             {neighborhoods.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div
+                    className={
+                        neighborhoods.length === 1
+                            ? "grid grid-cols-1 gap-8 justify-items-center"
+                            : "grid grid-cols-1 md:grid-cols-2 gap-8"
+                    }
+                >
                     {neighborhoods.map((doc) => {
                         const fm = doc.frontmatter as WhereToStayFrontmatter;
                         return (
                             <Link
                                 key={fm.slug}
                                 href={`/where-to-stay/${fm.slug}`}
-                                className="group card overflow-hidden"
+                                className={
+                                    neighborhoods.length === 1
+                                        ? "group card overflow-hidden w-full max-w-3xl"
+                                        : "group card overflow-hidden"
+                                }
                             >
                                 {/* Image */}
                                 <div className="aspect-[16/9] bg-gray-100 relative overflow-hidden">
-                                    <img
+                                    <SafeImage
                                         src={fm.featuredImage}
-                                        alt={fm.title}
+                                        fallbackSrc="/images/placeholders/where-to-stay.svg"
+                                        alt={fm.featuredImageAlt || fm.title}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />

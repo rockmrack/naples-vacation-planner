@@ -4,6 +4,7 @@ import { site } from "@/src/config/site";
 import { getAllDocsByType } from "@/src/lib/content";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import type { MapFrontmatter } from "@/src/lib/content-schema";
+import { SafeImage } from "@/src/components/SafeImage";
 
 export const metadata: Metadata = {
     title: "Naples Florida Maps – Interactive & Printable Travel Maps",
@@ -40,20 +41,33 @@ export default function MapsPage() {
 
             {/* Maps Grid */}
             {maps.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    className={
+                        maps.length === 1
+                            ? "grid grid-cols-1 gap-8 justify-items-center"
+                            : maps.length === 2
+                                ? "grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+                                : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    }
+                >
                     {maps.map((doc) => {
                         const fm = doc.frontmatter as MapFrontmatter;
                         return (
                             <Link
                                 key={fm.slug}
                                 href={`/maps/${fm.slug}`}
-                                className="group card overflow-hidden"
+                                className={
+                                    maps.length === 1
+                                        ? "group card overflow-hidden w-full max-w-xl"
+                                        : "group card overflow-hidden"
+                                }
                             >
                                 {/* Image */}
                                 <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
-                                    <img
+                                    <SafeImage
                                         src={fm.featuredImage}
-                                        alt={fm.title}
+                                        fallbackSrc="/images/placeholders/map.svg"
+                                        alt={fm.featuredImageAlt || fm.title}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                     />
                                     {fm.mapType && (

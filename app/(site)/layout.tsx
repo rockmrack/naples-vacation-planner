@@ -3,6 +3,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { Inter, Playfair_Display } from "next/font/google";
 import { site } from "@/src/config/site";
+import { getOrganizationSchema, getWebSiteSchema } from "@/src/lib/seo";
 import "@/src/styles/globals.css";
 
 const inter = Inter({
@@ -75,6 +76,20 @@ export default function RootLayout({
     return (
         <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
             <body className="min-h-screen bg-gray-50 text-gray-900 font-sans">
+                {/* Schema.org structured data */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(getOrganizationSchema()),
+                    }}
+                />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(getWebSiteSchema()),
+                    }}
+                />
+
                 {/* Header */}
                 <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
                     <div className="section-container">

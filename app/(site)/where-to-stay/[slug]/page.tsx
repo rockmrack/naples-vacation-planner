@@ -10,6 +10,7 @@ import { AffiliateCta } from "@/src/components/AffiliateCta";
 import { FAQ } from "@/src/components/FAQ";
 import { RelatedPosts } from "@/src/components/RelatedPosts";
 import { Prose } from "@/src/components/Prose";
+import { SafeImage } from "@/src/components/SafeImage";
 
 export const dynamicParams = false;
 
@@ -104,8 +105,9 @@ export default function WhereToStayDetailPage({
 
             {/* Featured Image */}
             <div className="mb-8 rounded-2xl overflow-hidden shadow-xl">
-                <img
+                <SafeImage
                     src={fm.featuredImage}
+                    fallbackSrc="/images/placeholders/where-to-stay.svg"
                     alt={fm.featuredImageAlt || fm.title}
                     className="w-full aspect-[21/9] object-cover"
                 />

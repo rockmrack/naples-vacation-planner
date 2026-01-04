@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/src/config/site";
 import { getFeaturedPosts, getDocCountsByType } from "@/src/lib/content";
+import { SafeImage } from "@/src/components/SafeImage";
 
 // Category cards data
 const categories = [
@@ -267,9 +268,10 @@ export default function HomePage() {
                             {featuredPosts.map((post) => (
                                 <article key={post.slug} className="card overflow-hidden group">
                                     <div className="aspect-[16/10] bg-gray-100 relative overflow-hidden">
-                                        <img
+                                        <SafeImage
                                             src={post.frontmatter.featuredImage}
-                                            alt={post.frontmatter.title}
+                                            fallbackSrc="/images/placeholders/travel-tip.svg"
+                                            alt={post.frontmatter.featuredImageAlt || post.frontmatter.title}
                                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                         />
                                     </div>
