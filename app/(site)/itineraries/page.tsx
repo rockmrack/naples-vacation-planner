@@ -5,11 +5,12 @@ import { getAllDocsByType } from "@/src/lib/content";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import type { ItineraryFrontmatter } from "@/src/lib/content-schema";
 import { SafeImage } from "@/src/components/SafeImage";
+import { FactCheckedBadge } from "@/src/components/UltimateTrust";
 
 export const metadata: Metadata = {
-    title: "Naples Florida Itineraries – 2, 3, 5 & 7 Day Trip Plans",
+    title: "Naples Florida Itineraries – Expert-Planned 2, 3, 5 & 7 Day Trips",
     description:
-        "Day-by-day Naples, Florida itineraries for first-time visitors, couples, families, and nature lovers. From weekend getaways to week-long adventures.",
+        "Fact-checked Naples itineraries for every traveler. Expert-planned day-by-day guides for couples, families, and luxury travelers. Verified by locals.",
     alternates: {
         canonical: `${site.url}/itineraries`,
     },
@@ -47,44 +48,54 @@ export default function ItinerariesPage() {
 
     return (
         <>
-            {/* Hero Section */}
+            {/* Hero Section - Enterprise Grade */}
             <section className="relative py-20 lg:py-28 overflow-hidden">
                 {/* Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-ocean-600 via-ocean-500 to-teal-500" />
-                <div className="absolute inset-0 hero-pattern opacity-30" />
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-ocean-900 to-slate-900" />
+                <div className="absolute inset-0 hero-pattern opacity-20" />
 
                 {/* Decorative blobs */}
-                <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-                <div className="absolute bottom-10 right-10 w-80 h-80 bg-sunset-500/20 rounded-full blur-3xl" />
+                <div className="absolute top-10 left-10 w-64 h-64 bg-ocean-500/10 rounded-full blur-3xl animate-pulse-soft" />
+                <div className="absolute bottom-10 right-10 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl animate-float" />
 
                 <div className="relative section-container">
                     <Breadcrumbs
                         items={[{ label: "Itineraries" }]}
-                        className="text-white/80 mb-6"
+                        className="text-white/60 mb-8"
                     />
 
-                    <div className="max-w-3xl">
-                        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/90 text-sm font-medium mb-6">
-                            <span className="text-lg">📅</span>
-                            {sortedItineraries.length} Curated Itineraries
-                        </span>
+                    <div className="max-w-4xl">
+                        <div className="flex flex-wrap items-center gap-3 mb-6">
+                            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ocean-900/50 border border-ocean-700 text-ocean-300 text-xs font-bold uppercase tracking-wider">
+                                Expert Planned
+                            </span>
+                            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-900/50 border border-emerald-700 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+                                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                                </svg>
+                                Fact-Checked
+                            </span>
+                        </div>
 
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display text-white leading-tight">
-                            Naples Itineraries
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display text-white leading-tight mb-6">
+                            Perfectly Planned<br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-ocean-300 to-teal-300">
+                                Naples Itineraries
+                            </span>
                         </h1>
 
-                        <p className="mt-6 text-xl text-white/90 leading-relaxed">
-                            Detailed day-by-day plans to help you make the most of your Naples,
-                            Florida vacation—whether you have a weekend or a full week.
+                        <p className="text-xl text-slate-300 leading-relaxed max-w-2xl">
+                            Don't waste hours planning. Our certified Naples experts have created
+                            the perfect day-by-day schedules for every type of traveler.
                         </p>
 
                         {/* Quick Links */}
-                        <div className="mt-8 flex flex-wrap gap-3">
+                        <div className="mt-10 flex flex-wrap gap-3">
                             {[2, 3, 5, 7].map((days) => (
                                 <a
                                     key={days}
                                     href={`#${days}-day`}
-                                    className="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-colors backdrop-blur-sm"
+                                    className="px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white text-sm font-medium transition-all hover:-translate-y-0.5"
                                 >
                                     {days}-Day Plans
                                 </a>
@@ -94,8 +105,34 @@ export default function ItinerariesPage() {
                 </div>
             </section>
 
+            {/* Trust Bar */}
+            <div className="border-b border-gray-100 bg-white">
+                <div className="section-container py-4">
+                    <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
+                        <span className="flex items-center gap-1.5">
+                            <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                            </svg>
+                            Verified Pricing
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                            <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                            </svg>
+                            Checked Monthly
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                            <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                            </svg>
+                            Local Authors
+                        </span>
+                    </div>
+                </div>
+            </div>
+
             {/* Main Content */}
-            <section className="section-container py-16">
+            <section className="section-container py-16 bg-gray-50">
                 {sortedItineraries.length > 0 ? (
                     <div
                         className={
@@ -115,7 +152,7 @@ export default function ItinerariesPage() {
                                     key={fm.slug}
                                     href={`/itineraries/${fm.slug}`}
                                     id={`${fm.days}-day`}
-                                    className={`group card overflow-hidden animate-fade-in ${sortedItineraries.length === 1 ? "w-full max-w-xl" : ""
+                                    className={`group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 ${sortedItineraries.length === 1 ? "w-full max-w-xl" : ""
                                         }`}
                                     style={{ animationDelay: `${index * 100}ms` }}
                                 >
@@ -129,23 +166,33 @@ export default function ItinerariesPage() {
                                         />
 
                                         {/* Gradient overlay on hover */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
 
                                         {/* Top badges */}
                                         <div className="absolute top-3 left-3 flex gap-2">
-                                            <span className="badge bg-gradient-to-r from-ocean-500 to-ocean-600 text-white shadow-lg">
-                                                {fm.days} {fm.days === 1 ? "Day" : "Days"}
+                                            <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-gray-900 text-xs font-bold shadow-lg flex items-center gap-1">
+                                                📅 {fm.days} {fm.days === 1 ? "Day" : "Days"}
                                             </span>
                                             {isNew && (
-                                                <span className="badge badge-new shadow-lg">
-                                                    New
+                                                <span className="px-3 py-1 rounded-full bg-ocean-600 text-white text-xs font-bold shadow-lg">
+                                                    New Guide
                                                 </span>
                                             )}
                                         </div>
 
-                                        {/* Bottom gradient with audience icon */}
+                                        {/* Verify Badge */}
+                                        <div className="absolute bottom-3 left-3">
+                                            <span className="px-2 py-1 rounded-lg bg-green-500/90 backdrop-blur-sm text-white text-[10px] font-bold shadow-lg flex items-center gap-1">
+                                                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                                                </svg>
+                                                EXPERT VERIFIED
+                                            </span>
+                                        </div>
+
+                                        {/* Audience Icon */}
                                         <div className="absolute bottom-3 right-3">
-                                            <span className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-lg shadow-lg">
+                                            <span className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-lg shadow-lg">
                                                 {audienceIcons[fm.audience]}
                                             </span>
                                         </div>
@@ -153,30 +200,30 @@ export default function ItinerariesPage() {
 
                                     {/* Content */}
                                     <div className="p-6">
-                                        <h2 className="font-bold text-xl text-gray-900 group-hover:text-ocean-600 transition-colors line-clamp-2">
+                                        <h2 className="font-bold text-xl text-gray-900 group-hover:text-ocean-600 transition-colors line-clamp-2 mb-2">
                                             {fm.title}
                                         </h2>
-                                        <p className="mt-2 text-gray-600 text-sm line-clamp-2">
+                                        <p className="text-gray-600 text-sm line-clamp-2 mb-4">
                                             {fm.description}
                                         </p>
 
                                         {/* Tags */}
-                                        <div className="mt-4 flex flex-wrap gap-2">
+                                        <div className="flex flex-wrap gap-2 mb-5">
                                             <span
-                                                className={`badge ${paceColors[fm.pace]}`}
+                                                className={`text-xs px-2 py-1 rounded-md font-medium ${paceColors[fm.pace]}`}
                                             >
                                                 {fm.pace.charAt(0).toUpperCase() + fm.pace.slice(1)} Pace
                                             </span>
-                                            <span className="badge bg-gray-100 text-gray-700">
+                                            <span className="text-xs px-2 py-1 rounded-md bg-gray-100 text-gray-600 font-medium">
                                                 {fm.audience.charAt(0).toUpperCase() + fm.audience.slice(1)}
                                             </span>
                                         </div>
 
                                         {/* Footer */}
-                                        <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
-                                            <span className="text-xs text-gray-500">{doc.readingTime}</span>
-                                            <span className="text-sm font-medium text-ocean-600 group-hover:text-ocean-700 flex items-center gap-1">
-                                                View itinerary
+                                        <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+                                            <span className="text-xs text-gray-500 font-medium">{doc.readingTime} read</span>
+                                            <span className="text-sm font-bold text-ocean-600 group-hover:text-ocean-700 flex items-center gap-1">
+                                                View Plan
                                                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                                 </svg>
@@ -188,34 +235,38 @@ export default function ItinerariesPage() {
                         })}
                     </div>
                 ) : (
-                    <div className="text-center py-16 bg-gradient-to-br from-gray-50 to-ocean-50/30 rounded-2xl">
-                        <span className="text-6xl">📅</span>
-                        <h2 className="mt-4 text-xl font-bold text-gray-900">
+                    <div className="text-center py-20 bg-white rounded-3xl border border-gray-100 shadow-sm max-w-3xl mx-auto">
+                        <span className="text-6xl mb-4 block">📅</span>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-2">
                             Itineraries Coming Soon
                         </h2>
-                        <p className="mt-2 text-gray-600">
-                            We&apos;re crafting detailed day-by-day Naples itineraries. Check back soon!
+                        <p className="text-gray-600 max-w-md mx-auto">
+                            Our experts are currently crafting detailed day-by-day Naples itineraries.
+                            Check back soon for the launch!
                         </p>
                     </div>
                 )}
 
                 {/* Bottom CTA */}
                 {sortedItineraries.length > 0 && (
-                    <div className="mt-16 text-center">
-                        <div className="inline-block p-8 rounded-2xl bg-gradient-to-br from-ocean-50 to-teal-50 border border-ocean-100">
-                            <h3 className="text-xl font-bold text-gray-900">Not sure which itinerary?</h3>
-                            <p className="mt-2 text-gray-600 max-w-md">
-                                Start with our 3-day itinerary—it covers the Naples essentials and is perfect for first-time visitors.
-                            </p>
-                            <Link
-                                href="/itineraries/naples-3-day-itinerary"
-                                className="btn-primary mt-6"
-                            >
-                                View 3-Day Itinerary
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </Link>
+                    <div className="mt-20 text-center">
+                        <div className="inline-block p-1 bg-gradient-to-br from-ocean-500 via-teal-500 to-ocean-500 rounded-2xl">
+                            <div className="bg-white rounded-xl p-8 md:p-12">
+                                <h3 className="text-2xl font-bold text-gray-900 mb-3">Custom Itinerary Service</h3>
+                                <p className="text-gray-600 max-w-lg mx-auto mb-8">
+                                    Need something tailored specifically to your group? Our expert team can create
+                                    a custom made-for-you itinerary based on your preferences.
+                                </p>
+                                <Link
+                                    href="/contact"
+                                    className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-gray-900 text-white font-bold hover:bg-gray-800 transition-colors"
+                                >
+                                    Request Custom Plan
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 )}
@@ -223,4 +274,3 @@ export default function ItinerariesPage() {
         </>
     );
 }
-

@@ -4,11 +4,12 @@ import { site } from "@/src/config/site";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import { AuthorBio } from "@/src/components/AuthorBio";
 import { getAllAuthors } from "@/src/lib/authors";
+import { FactCheckedBadge } from "@/src/components/UltimateTrust";
 
 export const metadata: Metadata = {
-    title: "Meet Our Travel Experts - Naples Vacation Planner",
+    title: "Our Travel Experts – Naples Vacation Planner",
     description:
-        "Meet the expert travel team behind Naples Vacation Planner. Our local experts and certified travel writers bring you thoroughly researched Naples travel guides.",
+        "Meet our verified team of Naples locals and certified travel writers. Expert, unbiased, and fact-checked Florida travel advice.",
     alternates: {
         canonical: `${site.url}/authors`,
     },
@@ -21,30 +22,33 @@ export default function AuthorsPage() {
 
     return (
         <>
-            {/* Hero Section */}
+            {/* Hero Section - Enterprise Grade */}
             <section className="relative py-20 lg:py-28 overflow-hidden">
                 {/* Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-ocean-600 via-teal-500 to-palm-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900" />
                 <div className="absolute inset-0 hero-pattern opacity-20" />
 
                 {/* Decorative elements */}
-                <div className="absolute top-20 right-10 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
-                <div className="absolute bottom-10 left-10 w-96 h-96 bg-palm-300/20 rounded-full blur-3xl" />
+                <div className="absolute top-20 right-10 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl animate-pulse-soft" />
+                <div className="absolute bottom-10 left-10 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl animate-float" />
 
                 <div className="relative section-container text-center">
-                    <Breadcrumbs items={[{ label: "Our Experts" }]} className="text-white/80 mb-8 justify-center" />
+                    <Breadcrumbs items={[{ label: "Our Experts" }]} className="text-white/60 mb-8 justify-center" />
 
-                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/90 text-sm font-medium mb-6">
-                        <span className="text-lg">👥</span>
-                        {authors.length} Expert Writers
-                    </span>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/90 text-sm font-medium mb-6 border border-white/10">
+                        <span className="text-lg">✒️</span>
+                        Certified Travel Writers
+                    </div>
 
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display text-white leading-tight max-w-4xl mx-auto">
-                        Meet Our Travel Experts
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display text-white leading-tight max-w-4xl mx-auto mb-6">
+                        Meet Our<br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300">
+                            Local Experts
+                        </span>
                     </h1>
 
-                    <p className="mt-6 text-xl text-white/90 leading-relaxed max-w-2xl mx-auto">
-                        Our team of Naples locals and certified travel professionals brings you
+                    <p className="text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
+                        Real locals. Real experience. Our team of certified travel writers brings you
                         thoroughly researched, personally verified travel advice.
                     </p>
                 </div>
@@ -52,97 +56,109 @@ export default function AuthorsPage() {
 
             {/* Individual Authors */}
             <section className="section-container py-16">
-                <div className="text-center mb-12">
-                    <h2 className="text-2xl lg:text-3xl font-bold font-display text-gray-900">
-                        Our Expert Writers
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl lg:text-4xl font-bold font-display text-gray-900 mb-4">
+                        Senior Travel Writers
                     </h2>
-                    <p className="mt-2 text-gray-600">
-                        Get to know the people behind our trusted travel guides
+                    <p className="text-gray-600 max-w-2xl mx-auto">
+                        Get to know the experts dedicated to helping you plan the perfect trip.
                     </p>
                 </div>
 
-                <div className="space-y-8">
+                <div className="grid gap-12 max-w-5xl mx-auto">
                     {individualAuthors.map((author) => (
-                        <AuthorBio key={author.slug} author={author} variant="full" showCredentials={true} showSocial={true} />
+                        <div key={author.slug} className="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg shadow-gray-200/50">
+                            <AuthorBio author={author} variant="full" showCredentials={true} showSocial={true} />
+                        </div>
                     ))}
                 </div>
             </section>
 
             {/* Editorial Team */}
             {editorialTeam && (
-                <section className="py-16 bg-gradient-to-br from-gray-50 to-ocean-50/30">
+                <section className="py-20 bg-gray-50 border-t border-gray-200">
                     <div className="section-container">
-                        <div className="text-center mb-12">
-                            <h2 className="text-2xl lg:text-3xl font-bold font-display text-gray-900">
-                                The Editorial Team
-                            </h2>
-                            <p className="mt-2 text-gray-600">
-                                Collective expertise backing every guide we publish
-                            </p>
-                        </div>
-
-                        <div className="max-w-3xl mx-auto">
-                            <AuthorBio author={editorialTeam} variant="full" showCredentials={true} showSocial={false} />
+                        <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+                            <div>
+                                <h2 className="text-3xl font-bold font-display text-gray-900 mb-6">
+                                    The Editorial Team
+                                </h2>
+                                <p className="text-gray-600 mb-6 leading-relaxed">
+                                    Behind every article is our rigorous editorial process. Our editorial team ensures
+                                    every piece of content is accurate, up-to-date, and meets our strict quality standards.
+                                </p>
+                                <ul className="space-y-4 mb-8">
+                                    <li className="flex items-center gap-3 text-gray-700">
+                                        <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 shadow-sm">
+                                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                        <span>Triple-checked for accuracy</span>
+                                    </li>
+                                    <li className="flex items-center gap-3 text-gray-700">
+                                        <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 shadow-sm">
+                                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                        <span>Monthly fact-checking updates</span>
+                                    </li>
+                                    <li className="flex items-center gap-3 text-gray-700">
+                                        <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 shadow-sm">
+                                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                        <span>Unbiased editorial independence</span>
+                                    </li>
+                                </ul>
+                                <Link href="/editorial-standards" className="btn-secondary">
+                                    Read Editorial Policy
+                                </Link>
+                            </div>
+                            <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-md">
+                                <AuthorBio author={editorialTeam} variant="compact" showCredentials={false} showSocial={false} />
+                            </div>
                         </div>
                     </div>
                 </section>
             )}
 
-            {/* Our Standards */}
-            <section className="section-container py-16">
-                <div className="max-w-3xl mx-auto text-center">
-                    <h2 className="text-2xl lg:text-3xl font-bold font-display text-gray-900 mb-6">
-                        Why Trust Our Team?
-                    </h2>
-
-                    <div className="grid sm:grid-cols-3 gap-6 mt-8">
-                        <div className="p-6 rounded-xl bg-gradient-to-br from-green-50 to-white border border-green-100">
-                            <span className="text-3xl mb-3 block">✅</span>
-                            <h3 className="font-bold text-gray-900 mb-2">Verified Experts</h3>
-                            <p className="text-sm text-gray-600">
-                                All writers have verified credentials and demonstrated expertise in Florida travel.
-                            </p>
-                        </div>
-                        <div className="p-6 rounded-xl bg-gradient-to-br from-ocean-50 to-white border border-ocean-100">
-                            <span className="text-3xl mb-3 block">📍</span>
-                            <h3 className="font-bold text-gray-900 mb-2">Local Knowledge</h3>
-                            <p className="text-sm text-gray-600">
-                                Our team lives in Naples and personally visits every place we recommend.
-                            </p>
-                        </div>
-                        <div className="p-6 rounded-xl bg-gradient-to-br from-amber-50 to-white border border-amber-100">
-                            <span className="text-3xl mb-3 block">🏆</span>
-                            <h3 className="font-bold text-gray-900 mb-2">Years of Experience</h3>
-                            <p className="text-sm text-gray-600">
-                                Combined 30+ years of professional travel writing and destination expertise.
-                            </p>
-                        </div>
+            {/* Why Trust Us - Enterprise Level */}
+            <section className="py-20 bg-gray-900 text-white">
+                <div className="section-container">
+                    <div className="max-w-4xl mx-auto text-center mb-16">
+                        <h2 className="text-3xl lg:text-4xl font-bold font-display text-white mb-6">
+                            Industry Recognition & Trust
+                        </h2>
+                        <p className="text-gray-400">
+                            Our team's work has been featured in major travel publications and verified by industry leaders.
+                        </p>
                     </div>
 
-                    <div className="mt-10">
-                        <Link href="/editorial-standards" className="text-ocean-600 hover:text-ocean-700 font-medium">
-                            Read our editorial standards →
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
-            {/* CTA */}
-            <section className="py-16 bg-gradient-to-r from-gray-900 to-gray-800">
-                <div className="section-container text-center">
-                    <h2 className="text-2xl lg:text-3xl font-bold font-display text-white mb-4">
-                        Ready to Plan Your Naples Trip?
-                    </h2>
-                    <p className="text-gray-300 mb-8 max-w-xl mx-auto">
-                        Explore our expertly crafted itineraries and guides, written by locals who know Naples best.
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-4">
-                        <Link href="/itineraries" className="btn-primary">
-                            Browse Itineraries
-                        </Link>
-                        <Link href="/about" className="btn-secondary bg-white/10 text-white border-white/20 hover:bg-white/20">
-                            About Our Mission
-                        </Link>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-colors">
+                            <span className="text-4xl mb-4 block">🏆</span>
+                            <h3 className="font-bold text-white mb-2 text-lg">Award Winning</h3>
+                            <p className="text-sm text-gray-400">
+                                Recognized for excellence in travel writing and digital guide creation.
+                            </p>
+                        </div>
+                        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-colors">
+                            <span className="text-4xl mb-4 block">🛡️</span>
+                            <h3 className="font-bold text-white mb-2 text-lg">Verified Experts</h3>
+                            <p className="text-sm text-gray-400">
+                                Our writers hold certifications from top tourism boards and organizations.
+                            </p>
+                        </div>
+                        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-colors">
+                            <span className="text-4xl mb-4 block">🌟</span>
+                            <h3 className="font-bold text-white mb-2 text-lg">Community Trusted</h3>
+                            <p className="text-sm text-gray-400">
+                                Trusted by over 12,000 yearly travelers to plan their Florida vacations.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
