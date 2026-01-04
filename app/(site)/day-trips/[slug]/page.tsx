@@ -67,6 +67,7 @@ const mdxComponents = {
     Rating,
     ProsCons,
     KeyStat,
+    Disclosure,
 };
 
 export default function DayTripDetailPage({

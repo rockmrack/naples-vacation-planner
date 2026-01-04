@@ -1,31 +1,13 @@
+import { MetadataRoute } from "next";
 import { site } from "@/src/config/site";
 
-export default function robots() {
-    const isProd =
-        process.env.VERCEL_ENV === "production" ||
-        process.env.NODE_ENV === "production";
-
-    // Block crawling in non-production environments
-    if (!isProd) {
-        return {
-            rules: [
-                {
-                    userAgent: "*",
-                    disallow: "/",
-                },
-            ],
-        };
-    }
-
-    // Production: Allow all crawling
+export default function robots(): MetadataRoute.Robots {
     return {
-        rules: [
-            {
-                userAgent: "*",
-                allow: "/",
-            },
-        ],
+        rules: {
+            userAgent: "*",
+            allow: "/",
+            disallow: ["/api/", "/studio/"],
+        },
         sitemap: `${site.url}/sitemap.xml`,
-        host: site.url,
     };
 }
