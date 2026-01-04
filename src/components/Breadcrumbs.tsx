@@ -6,11 +6,12 @@ interface BreadcrumbItem {
     href?: string;
 }
 
-interface BreadcrumbsProps {
+export interface BreadcrumbsProps {
     items: BreadcrumbItem[];
+    className?: string;
 }
 
-export function Breadcrumbs({ items }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
     // Generate BreadcrumbList Schema for SEO
     const breadcrumbSchema = {
         "@context": "https://schema.org",
@@ -32,7 +33,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
     };
 
     return (
-        <nav aria-label="Breadcrumb" className="mb-6">
+        <nav aria-label="Breadcrumb" className={`mb-6 ${className || ""}`}>
             {/* Breadcrumb Schema */}
             <script
                 type="application/ld+json"
