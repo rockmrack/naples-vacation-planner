@@ -41,6 +41,12 @@
         "partner": "booking",
         "category": "hotels"
     },
+    "booking_hotels_vanderbilt": {
+        "label": "Browse Vanderbilt Beach Hotels",
+        "url": "https://www.booking.com/searchresults.html?ss=Vanderbilt+Beach%2C+Naples%2C+Florida",
+        "partner": "booking",
+        "category": "hotels"
+    },
     "booking_hotels_marco_island": {
         "label": "Hotels on Marco Island",
         "url": "https://www.booking.com/searchresults.html?ss=Marco+Island%2C+Florida",
