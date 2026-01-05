@@ -7,6 +7,7 @@ export const ContentTypeEnum = z.enum([
     "day-trip",
     "travel-tip",
     "map",
+    "hotel",
 ]);
 
 export type ContentType = z.infer<typeof ContentTypeEnum>;
@@ -94,6 +95,21 @@ export const MapFrontmatterSchema = BaseFrontmatterSchema.extend({
 
 export type MapFrontmatter = z.infer<typeof MapFrontmatterSchema>;
 
+// Hotel schema
+export const HotelFrontmatterSchema = BaseFrontmatterSchema.extend({
+    type: z.literal("hotel"),
+    hotelName: z.string().min(3),
+    category: z.enum(["luxury-resort", "boutique", "mid-range", "budget", "extended-stay", "vacation-rental", "golf-resort", "family-resort", "waterfront"]),
+    area: z.string().min(3), // e.g., "Old Naples", "Marco Island", "Bonita Springs"
+    amenities: z.array(z.string()).default([]),
+    priceLevel: z.enum(["$", "$$", "$$$", "$$$$", "$$$$$"]),
+    bookingUrl: z.string().url().optional(),
+    petFriendly: z.boolean().optional(),
+    beachAccess: z.boolean().optional(),
+});
+
+export type HotelFrontmatter = z.infer<typeof HotelFrontmatterSchema>;
+
 // Discriminated union of all content types
 export const FrontmatterSchema = z.discriminatedUnion("type", [
     ItineraryFrontmatterSchema,
@@ -101,6 +117,7 @@ export const FrontmatterSchema = z.discriminatedUnion("type", [
     DayTripFrontmatterSchema,
     TravelTipFrontmatterSchema,
     MapFrontmatterSchema,
+    HotelFrontmatterSchema,
 ]);
 
 export type Frontmatter = z.infer<typeof FrontmatterSchema>;
@@ -124,4 +141,8 @@ export function isTravelTip(fm: Frontmatter): fm is TravelTipFrontmatter {
 
 export function isMap(fm: Frontmatter): fm is MapFrontmatter {
     return fm.type === "map";
+}
+
+export function isHotel(fm: Frontmatter): fm is HotelFrontmatter {
+    return fm.type === "hotel";
 }
