@@ -93,6 +93,7 @@ export default function ItineraryPage({
     }
 
     const fm = doc.frontmatter as ItineraryFrontmatter;
+    console.log(`ItineraryPage: ${fm.slug}, VideoURL: ${fm.videoUrl}`);
 
     // Get related posts
     let allItineraries: ReturnType<typeof getAllDocsByType> = [];
