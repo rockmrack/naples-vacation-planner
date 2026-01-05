@@ -80,7 +80,7 @@ export type DayTripFrontmatter = z.infer<typeof DayTripFrontmatterSchema>;
 // Travel Tip schema
 export const TravelTipFrontmatterSchema = BaseFrontmatterSchema.extend({
     type: z.literal("travel-tip"),
-    category: z.enum(["planning", "logistics", "seasonal", "budget", "activities"]).optional(),
+    category: z.enum(["planning", "logistics", "seasonal", "budget", "activities", "dining"]).optional(),
 });
 
 export type TravelTipFrontmatter = z.infer<typeof TravelTipFrontmatterSchema>;

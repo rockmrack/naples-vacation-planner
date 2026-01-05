@@ -20,7 +20,7 @@ const categoryLabels: Record<string, string> = {
     seasonal: "When to Go",
     budget: "Budget",
     activities: "Things to Do",
-    dining: "Dining",
+    dining: "Food & Drink",
 };
 
 interface TravelTipDoc {
