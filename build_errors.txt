@@ -1,0 +1,13 @@
+﻿app/(site)/restaurants/[slug]/page.tsx(5,48): error TS2307: Cannot find module '@/lib/content' or its corresponding type declarations.
+app/(site)/restaurants/[slug]/page.tsx(6,22): error TS2307: Cannot find module '@/config/site' or its corresponding type declarations.
+app/(site)/restaurants/[slug]/page.tsx(7,53): error TS2307: Cannot find module '@/lib/content-schema' or its corresponding type declarations.
+app/(site)/restaurants/[slug]/page.tsx(8,23): error TS2307: Cannot find module '@/components/Prose' or its corresponding type declarations.
+app/(site)/restaurants/[slug]/page.tsx(10,29): error TS2307: Cannot find module '@/components/Breadcrumbs' or its corresponding type declarations.
+app/(site)/restaurants/[slug]/page.tsx(11,26): error TS2307: Cannot find module '@/components/ShareButtons' or its corresponding type declarations.
+app/(site)/restaurants/[slug]/page.tsx(19,29): error TS7006: Parameter 'doc' implicitly has an 'any' type.
+app/(site)/restaurants/[slug]/page.tsx(125,62): error TS7006: Parameter 'dish' implicitly has an 'any' type.
+app/(site)/restaurants/[slug]/page.tsx(139,53): error TS7006: Parameter 'award' implicitly has an 'any' type.
+app/(site)/restaurants/[slug]/page.tsx(216,58): error TS7006: Parameter 'tag' implicitly has an 'any' type.
+app/(site)/restaurants/page.tsx(2,34): error TS2307: Cannot find module '@/lib/content' or its corresponding type declarations.
+app/(site)/restaurants/page.tsx(3,22): error TS2307: Cannot find module '@/config/site' or its corresponding type declarations.
+app/(site)/restaurants/page.tsx(4,28): error TS2307: Cannot find module '@/components/RestaurantGrid' or its corresponding type declarations.

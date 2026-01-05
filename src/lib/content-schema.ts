@@ -8,6 +8,7 @@ export const ContentTypeEnum = z.enum([
     "travel-tip",
     "map",
     "hotel",
+    "restaurant",
 ]);
 
 export type ContentType = z.infer<typeof ContentTypeEnum>;
@@ -110,6 +111,31 @@ export const HotelFrontmatterSchema = BaseFrontmatterSchema.extend({
 
 export type HotelFrontmatter = z.infer<typeof HotelFrontmatterSchema>;
 
+// Restaurant schema
+export const RestaurantFrontmatterSchema = BaseFrontmatterSchema.extend({
+    type: z.literal("restaurant"),
+    restaurantName: z.string().min(3),
+    cuisine: z.enum([
+        "seafood", "italian", "american", "steakhouse",
+        "asian", "mexican", "french", "mediterranean",
+        "breakfast-brunch", "casual", "fine-dining"
+    ]),
+    priceLevel: z.enum(["$", "$$", "$$$", "$$$$"]),
+    neighborhood: z.string().min(3),
+    address: z.string().min(10),
+    phone: z.string().optional(),
+    website: z.string().url().optional(),
+    reservationUrl: z.string().url().optional(),
+    hours: z.string().optional(),
+    bestFor: z.array(z.string()).default([]),
+    signatureDishes: z.array(z.string()).default([]),
+    awards: z.array(z.string()).default([]),
+    waterfront: z.boolean().optional(),
+    outdoorSeating: z.boolean().optional(),
+});
+
+export type RestaurantFrontmatter = z.infer<typeof RestaurantFrontmatterSchema>;
+
 // Discriminated union of all content types
 export const FrontmatterSchema = z.discriminatedUnion("type", [
     ItineraryFrontmatterSchema,
@@ -118,6 +144,7 @@ export const FrontmatterSchema = z.discriminatedUnion("type", [
     TravelTipFrontmatterSchema,
     MapFrontmatterSchema,
     HotelFrontmatterSchema,
+    RestaurantFrontmatterSchema,
 ]);
 
 export type Frontmatter = z.infer<typeof FrontmatterSchema>;
@@ -145,4 +172,8 @@ export function isMap(fm: Frontmatter): fm is MapFrontmatter {
 
 export function isHotel(fm: Frontmatter): fm is HotelFrontmatter {
     return fm.type === "hotel";
+}
+
+export function isRestaurant(fm: Frontmatter): fm is RestaurantFrontmatter {
+    return fm.type === "restaurant";
 }

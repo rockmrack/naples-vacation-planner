@@ -18,6 +18,7 @@ const TYPE_DIR: Record<ContentType, string> = {
     "travel-tip": "travel-tips",
     map: "maps",
     hotel: "hotels",
+    restaurant: "restaurants",
 };
 
 export interface ContentDoc {
