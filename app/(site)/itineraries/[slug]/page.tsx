@@ -179,7 +179,10 @@ export default function ItineraryPage({
 
             {/* Video Content */}
             {fm.videoUrl && (
-                <div className="mb-8">
+                <div className="mb-12">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span>🎥</span> Video Tour
+                    </h2>
                     <VideoEmbed url={fm.videoUrl} title={`Video about ${fm.title}`} />
                 </div>
             )}

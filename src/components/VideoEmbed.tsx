@@ -11,8 +11,12 @@ export default function VideoEmbed({ url, title = "Video content" }: VideoEmbedP
     const [embedUrl, setEmbedUrl] = useState<string | null>(null);
 
     useEffect(() => {
-        if (!url) return;
+        if (!url) {
+            console.warn("VideoEmbed: No URL provided");
+            return;
+        }
 
+        console.log("VideoEmbed processing URL:", url);
         let finalUrl = "";
 
         // YouTube
