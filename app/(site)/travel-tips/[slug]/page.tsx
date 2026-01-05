@@ -11,6 +11,7 @@ import { FAQ } from "@/src/components/FAQ";
 import { QuickSummary } from "@/src/components/QuickSummary";
 import { RelatedPosts } from "@/src/components/RelatedPosts";
 import { Prose } from "@/src/components/Prose";
+import { EditorNote, ExpertTip, KeyStat } from "@/src/components/ContentComponents";
 
 export const dynamicParams = false;
 
@@ -53,6 +54,9 @@ const mdxComponents = {
     AffiliateCta,
     FAQ,
     QuickSummary,
+    EditorNote,
+    ExpertTip,
+    KeyStat,
 };
 
 export default function TravelTipDetailPage({

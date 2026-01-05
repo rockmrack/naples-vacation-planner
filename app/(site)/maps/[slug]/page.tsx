@@ -10,6 +10,7 @@ import { Disclosure } from "@/src/components/Disclosure";
 import { QuickSummary } from "@/src/components/QuickSummary";
 import { Prose } from "@/src/components/Prose";
 import { SafeImage } from "@/src/components/SafeImage";
+import { EditorNote, ExpertTip, KeyStat, ProsCons, Rating } from "@/src/components/ContentComponents";
 import { ReadingProgress } from "@/src/components/ReadingProgress";
 import { TableOfContents } from "@/src/components/TableOfContents";
 import { ShareButtons } from "@/src/components/ShareButtons";
@@ -54,6 +55,11 @@ const mdxComponents = {
     Disclosure,
     QuickSummary,
     SafeImage,
+    EditorNote,
+    ExpertTip,
+    KeyStat,
+    ProsCons,
+    Rating,
 };
 
 export default function MapDetailPage({

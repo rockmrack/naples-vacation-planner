@@ -12,6 +12,7 @@ import { QuickSummary } from "@/src/components/QuickSummary";
 import { RelatedPosts } from "@/src/components/RelatedPosts";
 import { Prose } from "@/src/components/Prose";
 import { SafeImage } from "@/src/components/SafeImage";
+import { EditorNote, ExpertTip, KeyStat, ProsCons, Rating } from "@/src/components/ContentComponents";
 
 export const dynamicParams = false;
 
@@ -55,6 +56,11 @@ const mdxComponents = {
     FAQ,
     QuickSummary,
     SafeImage,
+    EditorNote,
+    ExpertTip,
+    KeyStat,
+    ProsCons,
+    Rating,
 };
 
 export default function DayTripDetailPage({
