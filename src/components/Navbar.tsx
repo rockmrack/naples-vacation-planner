@@ -36,7 +36,7 @@ export function Navbar() {
                         ))}
                         <div className="w-px h-6 bg-gray-200 mx-2" />
                         <Link
-                            href="/itineraries"
+                            href="/plan"
                             className="px-5 py-2 text-sm font-bold text-white bg-gradient-to-r from-ocean-500 to-ocean-600 rounded-full shadow-lg shadow-ocean-500/20 hover:shadow-ocean-500/30 hover:-translate-y-0.5 transition-all duration-300"
                         >
                             Start Planning
@@ -79,7 +79,7 @@ export function Navbar() {
                         ))}
                         <div className="pt-2 mt-2 border-t border-gray-100">
                             <Link
-                                href="/itineraries"
+                                href="/plan"
                                 className="flex items-center justify-center w-full px-4 py-3 text-base font-bold text-white bg-ocean-600 rounded-lg shadow-md"
                                 onClick={() => setIsMenuOpen(false)}
                             >
