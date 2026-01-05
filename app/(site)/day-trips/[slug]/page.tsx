@@ -12,6 +12,7 @@ import { QuickSummary } from "@/src/components/QuickSummary";
 import { RelatedPosts } from "@/src/components/RelatedPosts";
 import { Prose } from "@/src/components/Prose";
 import { SafeImage } from "@/src/components/SafeImage";
+import VideoEmbed from "@/src/components/VideoEmbed";
 import { EditorNote, ExpertTip, KeyStat, ProsCons, Rating } from "@/src/components/ContentComponents";
 
 export const dynamicParams = false;
@@ -177,6 +178,13 @@ export default function DayTripDetailPage({
             <Prose>
                 <MDXRemote source={doc.body} components={mdxComponents} />
             </Prose>
+
+            {/* Video Section */}
+            {fm.videoUrl && (
+                <div className="my-12">
+                    <VideoEmbed url={fm.videoUrl} title={`Video tour of ${fm.title}`} />
+                </div>
+            )}
 
             {/* Related Posts */}
             {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
