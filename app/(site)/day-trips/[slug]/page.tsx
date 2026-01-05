@@ -128,6 +128,13 @@ export default function DayTripDetailPage({
                 />
             </div>
 
+            {/* Video Section */}
+            {fm.videoUrl && (
+                <div className="mb-8">
+                    <VideoEmbed url={fm.videoUrl} title={`Video tour of ${fm.title}`} />
+                </div>
+            )}
+
             {/* Disclosure */}
             <Disclosure />
 
@@ -179,12 +186,7 @@ export default function DayTripDetailPage({
                 <MDXRemote source={doc.body} components={mdxComponents} />
             </Prose>
 
-            {/* Video Section */}
-            {fm.videoUrl && (
-                <div className="my-12">
-                    <VideoEmbed url={fm.videoUrl} title={`Video tour of ${fm.title}`} />
-                </div>
-            )}
+
 
             {/* Related Posts */}
             {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}

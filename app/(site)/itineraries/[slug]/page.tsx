@@ -177,13 +177,17 @@ export default function ItineraryPage({
                 />
             </div>
 
+            {/* Video Content */}
+            {fm.videoUrl && (
+                <div className="mb-8">
+                    <VideoEmbed url={fm.videoUrl} title={`Video about ${fm.title}`} />
+                </div>
+            )}
+
             {/* Disclosure */}
             <Disclosure variant="detailed" />
 
-            {/* Video Content */}
-            {fm.videoUrl && (
-                <VideoEmbed url={fm.videoUrl} title={`Video about ${fm.title}`} />
-            )}
+
 
             {/* Quick Summary */}
             <QuickSummary
