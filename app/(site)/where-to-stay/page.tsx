@@ -5,6 +5,7 @@ import { getAllDocsByType } from "@/src/lib/content";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import type { WhereToStayFrontmatter, HotelFrontmatter } from "@/src/lib/content-schema";
 import { SafeImage } from "@/src/components/SafeImage";
+import NeighborhoodMap from "@/src/components/NeighborhoodMap";
 
 export const metadata: Metadata = {
     title: "Where to Stay in Naples, Florida – Expert Neighborhood Guides",
@@ -110,6 +111,16 @@ export default function WhereToStayPage() {
                             </svg>
                             Safety Checked
                         </span>
+                    </div>
+                </div>
+
+                {/* Interactive Map Section */}
+                <div className="section-container pt-12 pb-4">
+                    <div className="bg-white p-4 rounded-3xl shadow-xl border border-gray-100">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-6 px-4">Interactive Neighborhood Map</h2>
+                        <div className="h-[500px] rounded-2xl overflow-hidden">
+                            <NeighborhoodMap />
+                        </div>
                     </div>
                 </div>
             </div>

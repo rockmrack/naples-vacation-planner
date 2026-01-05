@@ -31,7 +31,7 @@ export const site = {
     },
     navLinks: [
         { href: "/itineraries", label: "Itineraries" },
-        { href: "/neighborhoods", label: "Neighborhoods" }, // Replaces Where to Stay list
+        { href: "/where-to-stay", label: "Where to Stay" },
         { href: "/restaurants", label: "Restaurants" },
         { href: "/events", label: "Events" },
         { href: "/day-trips", label: "Day Trips" },
