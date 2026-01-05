@@ -118,6 +118,16 @@ export default function DayTripDetailPage({
                 </div>
             </header>
 
+            {/* Video Section - Placed at top as requested */}
+            {fm.videoUrl && (
+                <div className="mb-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span>🎥</span> Video Tour
+                    </h2>
+                    <VideoEmbed url={fm.videoUrl} title={`Video tour of ${fm.title}`} />
+                </div>
+            )}
+
             {/* Featured Image */}
             <div className="mb-8 rounded-2xl overflow-hidden shadow-xl">
                 <SafeImage
@@ -127,16 +137,6 @@ export default function DayTripDetailPage({
                     className="w-full aspect-[21/9] object-cover"
                 />
             </div>
-
-            {/* Video Section */}
-            {fm.videoUrl && (
-                <div className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <span>🎥</span> Video Tour
-                    </h2>
-                    <VideoEmbed url={fm.videoUrl} title={`Video tour of ${fm.title}`} />
-                </div>
-            )}
 
             {/* Disclosure */}
             <Disclosure />

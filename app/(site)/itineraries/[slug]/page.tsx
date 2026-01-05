@@ -168,6 +168,16 @@ export default function ItineraryPage({
                 </div>
             </header>
 
+            {/* Video Content - Placed at top as requested */}
+            {fm.videoUrl && (
+                <div className="mb-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span>🎥</span> Video Tour
+                    </h2>
+                    <VideoEmbed url={fm.videoUrl} title={`Video about ${fm.title}`} />
+                </div>
+            )}
+
             {/* Featured Image */}
             <div className="mb-8 rounded-2xl overflow-hidden shadow-xl">
                 <SafeImage
@@ -178,15 +188,7 @@ export default function ItineraryPage({
                 />
             </div>
 
-            {/* Video Content */}
-            {fm.videoUrl && (
-                <div className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <span>🎥</span> Video Tour
-                    </h2>
-                    <VideoEmbed url={fm.videoUrl} title={`Video about ${fm.title}`} />
-                </div>
-            )}
+
 
             {/* Disclosure */}
             <Disclosure variant="detailed" />
