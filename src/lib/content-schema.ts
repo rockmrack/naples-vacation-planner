@@ -9,6 +9,7 @@ export const ContentTypeEnum = z.enum([
     "map",
     "hotel",
     "restaurant",
+    "event",
 ]);
 
 export type ContentType = z.infer<typeof ContentTypeEnum>;
@@ -136,6 +137,29 @@ export const RestaurantFrontmatterSchema = BaseFrontmatterSchema.extend({
 
 export type RestaurantFrontmatter = z.infer<typeof RestaurantFrontmatterSchema>;
 
+// Event schema
+export const EventFrontmatterSchema = BaseFrontmatterSchema.extend({
+    type: z.literal("event"),
+    eventName: z.string().min(3),
+    category: z.enum([
+        "art-show", "festival", "farmers-market", "music",
+        "food-drink", "sports", "holiday", "film", "community"
+    ]),
+    startDate: z.string(), // ISO date
+    endDate: z.string().optional(), // ISO date for multi-day events
+    isRecurring: z.boolean().optional(),
+    recurringSchedule: z.string().optional(), // e.g., "Every Saturday"
+    venue: z.string().min(3),
+    address: z.string().min(10),
+    neighborhood: z.string().optional(),
+    price: z.string().optional(), // e.g., "Free", "$10", "$25-50"
+    website: z.string().url().optional(),
+    ticketUrl: z.string().url().optional(),
+    isFree: z.boolean().optional(),
+});
+
+export type EventFrontmatter = z.infer<typeof EventFrontmatterSchema>;
+
 // Discriminated union of all content types
 export const FrontmatterSchema = z.discriminatedUnion("type", [
     ItineraryFrontmatterSchema,
@@ -145,6 +169,7 @@ export const FrontmatterSchema = z.discriminatedUnion("type", [
     MapFrontmatterSchema,
     HotelFrontmatterSchema,
     RestaurantFrontmatterSchema,
+    EventFrontmatterSchema,
 ]);
 
 export type Frontmatter = z.infer<typeof FrontmatterSchema>;
@@ -176,4 +201,8 @@ export function isHotel(fm: Frontmatter): fm is HotelFrontmatter {
 
 export function isRestaurant(fm: Frontmatter): fm is RestaurantFrontmatter {
     return fm.type === "restaurant";
+}
+
+export function isEvent(fm: Frontmatter): fm is EventFrontmatter {
+    return fm.type === "event";
 }

@@ -19,6 +19,7 @@ const TYPE_DIR: Record<ContentType, string> = {
     map: "maps",
     hotel: "hotels",
     restaurant: "restaurants",
+    event: "events",
 };
 
 export interface ContentDoc {

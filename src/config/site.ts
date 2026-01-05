@@ -33,6 +33,7 @@ export const site = {
         { href: "/itineraries", label: "Itineraries" },
         { href: "/where-to-stay", label: "Where to Stay" },
         { href: "/restaurants", label: "Restaurants" },
+        { href: "/events", label: "Events" },
         { href: "/day-trips", label: "Day Trips" },
         { href: "/travel-tips", label: "Travel Tips" },
         { href: "/maps", label: "Maps" },
