@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { site } from "@/src/config/site";
 import { getAllDocsByType } from "@/src/lib/content";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
-import type { WhereToStayFrontmatter } from "@/src/lib/content-schema";
+import type { WhereToStayFrontmatter, HotelFrontmatter } from "@/src/lib/content-schema";
 import { SafeImage } from "@/src/components/SafeImage";
 
 export const metadata: Metadata = {
@@ -17,12 +17,27 @@ export const metadata: Metadata = {
 
 export default function WhereToStayPage() {
     let neighborhoods: ReturnType<typeof getAllDocsByType> = [];
+    let hotels: ReturnType<typeof getAllDocsByType> = [];
 
     try {
         neighborhoods = getAllDocsByType("where-to-stay");
     } catch {
         // No content yet
     }
+
+    try {
+        hotels = getAllDocsByType("hotel");
+    } catch {
+        // No hotels yet
+    }
+
+    // Get featured hotels (luxury and boutique)
+    const featuredHotels = hotels
+        .filter((h) => {
+            const fm = h.frontmatter as HotelFrontmatter;
+            return fm.category === "luxury-resort" || fm.category === "boutique";
+        })
+        .slice(0, 6);
 
     return (
         <>
@@ -46,6 +61,9 @@ export default function WhereToStayPage() {
                         <div className="flex flex-wrap items-center gap-3 mb-6">
                             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-palm-900/50 border border-palm-700 text-palm-300 text-xs font-bold uppercase tracking-wider">
                                 Neighborhood Guides
+                            </span>
+                            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-900/50 border border-amber-700 text-amber-300 text-xs font-bold uppercase tracking-wider">
+                                {hotels.length} Hotels & Resorts
                             </span>
                             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-900/50 border border-emerald-700 text-emerald-300 text-xs font-bold uppercase tracking-wider">
                                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
@@ -96,8 +114,90 @@ export default function WhereToStayPage() {
                 </div>
             </div>
 
-            {/* Main Content */}
+            {/* Hotels & Resorts Section */}
+            {hotels.length > 0 && (
+                <section className="section-container py-16 bg-white">
+                    <div className="text-center mb-12">
+                        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 text-amber-700 text-sm font-bold mb-4">
+                            🏨 {hotels.length} Properties
+                        </span>
+                        <h2 className="text-3xl sm:text-4xl font-bold font-display text-gray-900 mb-4">
+                            Hotels & Resorts
+                        </h2>
+                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                            From luxury beachfront resorts to budget-friendly options—explore every accommodation in Naples, Marco Island, and beyond.
+                        </p>
+                    </div>
+
+                    {/* Featured Hotels Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                        {featuredHotels.map((hotel) => {
+                            const fm = hotel.frontmatter as HotelFrontmatter;
+                            return (
+                                <Link
+                                    key={fm.slug}
+                                    href={`/hotels/${fm.slug}`}
+                                    className="group bg-gray-50 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100"
+                                >
+                                    <div className="aspect-[16/10] bg-gray-100 relative overflow-hidden">
+                                        <SafeImage
+                                            src={fm.featuredImage}
+                                            fallbackSrc="/images/placeholders/hotel.svg"
+                                            alt={fm.featuredImageAlt || fm.hotelName}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        />
+                                        <div className="absolute top-3 left-3">
+                                            <span className="px-2 py-0.5 rounded bg-amber-500 text-white text-xs font-bold">
+                                                {fm.category === "luxury-resort" ? "Luxury" : "Boutique"}
+                                            </span>
+                                        </div>
+                                        <div className="absolute top-3 right-3">
+                                            <span className="px-2 py-0.5 rounded bg-gray-900/70 text-white text-xs font-bold">
+                                                {fm.priceLevel}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="p-4">
+                                        <h3 className="font-bold text-gray-900 group-hover:text-palm-600 transition-colors">
+                                            {fm.hotelName}
+                                        </h3>
+                                        <p className="text-sm text-gray-500">{fm.area}</p>
+                                    </div>
+                                </Link>
+                            );
+                        })}
+                    </div>
+
+                    {/* View All Hotels Button */}
+                    <div className="text-center">
+                        <Link
+                            href="/hotels"
+                            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-palm-600 to-teal-600 text-white font-bold hover:from-palm-700 hover:to-teal-700 transition-all shadow-lg hover:shadow-xl"
+                        >
+                            View All {hotels.length} Hotels & Resorts
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </Link>
+                    </div>
+                </section>
+            )}
+
+            {/* Neighborhoods Section Header */}
             <section className="section-container py-16 bg-gray-50">
+                <div className="text-center mb-12">
+                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-palm-100 text-palm-700 text-sm font-bold mb-4">
+                        📍 Neighborhood Guides
+                    </span>
+                    <h2 className="text-3xl sm:text-4xl font-bold font-display text-gray-900 mb-4">
+                        Explore by Neighborhood
+                    </h2>
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Each Naples neighborhood has its own personality. Find the one that matches your vacation style.
+                    </p>
+                </div>
+
+                {/* Main Content */}
                 {neighborhoods.length > 0 ? (
                     <div
                         className={
