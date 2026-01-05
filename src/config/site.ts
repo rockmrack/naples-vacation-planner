@@ -32,7 +32,6 @@ export const site = {
     navLinks: [
         { href: "/itineraries", label: "Itineraries" },
         { href: "/where-to-stay", label: "Where to Stay" },
-        { href: "/neighborhoods", label: "Neighborhood Map" },
         { href: "/restaurants", label: "Restaurants" },
         { href: "/events", label: "Events" },
         { href: "/day-trips", label: "Day Trips" },
