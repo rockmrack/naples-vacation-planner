@@ -138,7 +138,7 @@ export default function ItinerariesPage() {
                     <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                         <span>🎥</span> Preview Your Trip
                     </h2>
-                    <VideoEmbed url="https://www.youtube.com/watch?v=M7LCCLjJv8g" title="Naples Vacation Preview" />
+                    <VideoEmbed url="https://www.youtube.com/watch?v=5z-m7Xh0YpA" title="Naples Vacation Preview" />
                 </div>
             </section>
 
@@ -148,7 +148,7 @@ export default function ItinerariesPage() {
                     <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                         <span>🎥</span> Preview Your Trip
                     </h2>
-                    <VideoEmbed url="https://www.youtube.com/watch?v=M7LCCLjJv8g" title="Naples Vacation Preview" />
+                    <VideoEmbed url="https://www.youtube.com/watch?v=5z-m7Xh0YpA" title="Naples Vacation Preview" />
                 </div>
             </section>
 
