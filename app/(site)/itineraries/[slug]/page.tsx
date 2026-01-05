@@ -16,9 +16,7 @@ import { SafeImage } from "@/src/components/SafeImage";
 import { EditorNote, ExpertTip, KeyStat, ProsCons, Rating } from "@/src/components/ContentComponents";
 import WeatherWidget from "@/src/components/WeatherWidget";
 import NewsletterSignup from "@/src/components/NewsletterSignup";
-import { LeadMagnetCTA } from "@/src/components/LeadMagnetCTA";
-import { RelatedContent } from "@/src/components/RelatedContent";
-import { getRelatedContent } from "@/src/lib/related-content";
+import VideoEmbed from "@/src/components/VideoEmbed";
 
 const MapComponent = dynamic(() => import("@/src/components/MapComponent"), { ssr: false });
 
@@ -95,7 +93,6 @@ export default function ItineraryPage({
     }
 
     const fm = doc.frontmatter as ItineraryFrontmatter;
-    console.log(`ItineraryPage: ${fm.slug}, VideoURL: ${fm.videoUrl}`);
 
     // Get related posts
     let allItineraries: ReturnType<typeof getAllDocsByType> = [];
@@ -105,17 +102,6 @@ export default function ItineraryPage({
         // No itineraries
     }
     const relatedPosts = getRelatedPosts(doc, allItineraries, 3);
-
-    // Get related content using automated tag matching
-    const relatedDocs = getRelatedContent(fm.slug, fm.tags, undefined, 4);
-    const relatedItems = relatedDocs.map(doc => ({
-        title: doc.frontmatter.title,
-        slug: doc.slug,
-        type: doc.frontmatter.type,
-        description: doc.frontmatter.description,
-        featuredImage: doc.frontmatter.featuredImage,
-        tags: doc.frontmatter.tags,
-    }));
 
     // Article Schema
     const articleSchema = {
@@ -191,7 +177,15 @@ export default function ItineraryPage({
                 />
             </div>
 
-
+            {/* Video Content */}
+            {fm.videoUrl && (
+                <div className="mb-12">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span>🎥</span> Video Tour
+                    </h2>
+                    <VideoEmbed url={fm.videoUrl} title={`Video about ${fm.title}`} />
+                </div>
+            )}
 
             {/* Disclosure */}
             <Disclosure variant="detailed" />
@@ -229,22 +223,6 @@ export default function ItineraryPage({
                     description="Get more expert Naples travel guides, insider tips, and a free vacation planning PDF delivered to your inbox."
                 />
             </div>
-
-            {/* Lead Magnet CTA */}
-            <div className="my-12">
-                <LeadMagnetCTA
-                    variant="inline"
-                    magnetType="itinerary"
-                    title="📋 Get the Complete Packing List"
-                    description={`Everything you need for your ${fm.days}-day Naples trip, organized by category.`}
-                />
-            </div>
-
-            {/* Internal Linking - Related Content */}
-            <RelatedContent
-                items={relatedItems}
-                title="More Naples Guides You'll Love"
-            />
 
             {/* Related Posts */}
             {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
