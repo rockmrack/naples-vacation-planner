@@ -7,7 +7,7 @@ export const site = {
     defaultTitle: "Naples Vacation Planner — Your Guide to Naples, Florida",
     defaultDescription:
         "Discover Naples, Florida with curated itineraries, neighborhood guides, day trips, and practical planning tips—designed for first-time visitors, families, couples, and nature lovers.",
-    tagline: "Plan Your Perfect Naples Escape",
+    tagline: "The Definitive Expert Guide to Florida's Paradise Coast",
     keywords: [
         "Naples Florida",
         "Naples vacation",
@@ -18,6 +18,13 @@ export const site = {
         "Marco Island",
         "Everglades",
         "Southwest Florida",
+        "Naples restaurants",
+        "Naples beaches",
+        "5th Avenue South",
+        "Luxury Travel Naples",
+        "Golf Resorts Naples",
+        "Family Vacation Naples",
+        "Best Hotels Naples FL",
     ],
     social: {
         instagram: "",
