@@ -16,7 +16,6 @@ import { SafeImage } from "@/src/components/SafeImage";
 import { EditorNote, ExpertTip, KeyStat, ProsCons, Rating } from "@/src/components/ContentComponents";
 import WeatherWidget from "@/src/components/WeatherWidget";
 import NewsletterSignup from "@/src/components/NewsletterSignup";
-import VideoEmbed from "@/src/components/VideoEmbed";
 
 const MapComponent = dynamic(() => import("@/src/components/MapComponent"), { ssr: false });
 
@@ -167,16 +166,6 @@ export default function ItineraryPage({
                     <WeatherWidget className="w-full lg:w-64 flex-shrink-0" />
                 </div>
             </header>
-
-            {/* Video Content - Placed at top as requested */}
-            {fm.videoUrl && (
-                <div className="mb-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <span>🎥</span> Video Tour
-                    </h2>
-                    <VideoEmbed url={fm.videoUrl} title={`Video about ${fm.title}`} />
-                </div>
-            )}
 
             {/* Featured Image */}
             <div className="mb-8 rounded-2xl overflow-hidden shadow-xl">

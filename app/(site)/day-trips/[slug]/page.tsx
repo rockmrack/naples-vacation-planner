@@ -12,7 +12,6 @@ import { QuickSummary } from "@/src/components/QuickSummary";
 import { RelatedPosts } from "@/src/components/RelatedPosts";
 import { Prose } from "@/src/components/Prose";
 import { SafeImage } from "@/src/components/SafeImage";
-import VideoEmbed from "@/src/components/VideoEmbed";
 import { EditorNote, ExpertTip, KeyStat, ProsCons, Rating } from "@/src/components/ContentComponents";
 
 export const dynamicParams = false;
@@ -117,16 +116,6 @@ export default function DayTripDetailPage({
                     <span>{doc.readingTime}</span>
                 </div>
             </header>
-
-            {/* Video Section - Placed at top as requested */}
-            {fm.videoUrl && (
-                <div className="mb-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <span>🎥</span> Video Tour
-                    </h2>
-                    <VideoEmbed url={fm.videoUrl} title={`Video tour of ${fm.title}`} />
-                </div>
-            )}
 
             {/* Featured Image */}
             <div className="mb-8 rounded-2xl overflow-hidden shadow-xl">

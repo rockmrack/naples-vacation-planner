@@ -6,7 +6,6 @@ import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import type { ItineraryFrontmatter } from "@/src/lib/content-schema";
 import { SafeImage } from "@/src/components/SafeImage";
 import { FactCheckedBadge } from "@/src/components/UltimateTrust";
-import VideoEmbed from "@/src/components/VideoEmbed";
 
 export const metadata: Metadata = {
     title: "Naples Florida Itineraries – Expert-Planned 2, 3, 5 & 7 Day Trips",
@@ -132,25 +131,6 @@ export default function ItinerariesPage() {
                 </div>
             </div>
 
-            {/* Featured Video Section */}
-            <section className="section-container pt-12">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <span>🎥</span> Preview Your Trip
-                    </h2>
-                    <VideoEmbed url="https://www.youtube.com/watch?v=5z-m7Xh0YpA" title="Naples Vacation Preview" />
-                </div>
-            </section>
-
-            {/* Featured Video Section */}
-            <section className="section-container pt-12">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <span>🎥</span> Preview Your Trip
-                    </h2>
-                    <VideoEmbed url="https://www.youtube.com/watch?v=5z-m7Xh0YpA" title="Naples Vacation Preview" />
-                </div>
-            </section>
 
             {/* Main Content */}
             <section className="section-container py-16 bg-gray-50">
