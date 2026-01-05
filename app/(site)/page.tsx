@@ -13,7 +13,7 @@ import {
 } from "@/src/components/UltimateTrust";
 import NewsletterSignup from "@/src/components/NewsletterSignup";
 
-// --- MEGA ENHANCED CONTENT DATA ---
+// --- ENTERPRISE-GRADE CONTENT DATA ---
 
 const heroRotatingWords = ["Perfect", "Unforgettable", "Dream", "Ultimate", "Luxury"];
 
@@ -56,7 +56,6 @@ const testimonials = [
     { name: "Amanda T.", location: "Boston, MA", text: "The restaurant recommendations were incredible. We felt like locals!", rating: 5 },
 ];
 
-// NEW: Trending destinations
 const trendingNow = [
     { name: "Naples Pier", image: "/images/placeholders/naples_pier_sunset_4k.jpg", searches: "2.4K searches today", hot: true },
     { name: "Everglades Tours", image: "/images/placeholders/everglades_airboat_action_4k.jpg", searches: "1.8K searches today", hot: true },
@@ -64,17 +63,14 @@ const trendingNow = [
     { name: "Marco Island", image: "/images/placeholders/marco_island_wide_beach.png", searches: "980 searches today", hot: false },
 ];
 
-// NEW: Expert team
 const expertTeam = [
-    { name: "Sarah Mitchell", role: "Lead Travel Writer", experience: "15 years in Naples", avatar: "SM", specialty: "Luxury & Fine Dining" },
-    { name: "Michael Chen", role: "Adventure Editor", experience: "Published Author", avatar: "MC", specialty: "Outdoor & Wildlife" },
-    { name: "Emily Rodriguez", role: "Local Expert", experience: "Naples Native", avatar: "ER", specialty: "Hidden Gems" },
+    { name: "Sarah Mitchell", role: "Lead Travel Writer", experience: "15 years in Naples", avatar: "SM", specialty: "Luxury & Fine Dining", verified: true },
+    { name: "Michael Chen", role: "Adventure Editor", experience: "Published Author", avatar: "MC", specialty: "Outdoor & Wildlife", verified: true },
+    { name: "Emily Rodriguez", role: "Local Expert", experience: "Naples Native", avatar: "ER", specialty: "Hidden Gems", verified: true },
 ];
 
-// NEW: Weather data (simulated)
 const weatherData = { temp: 78, condition: "Sunny", humidity: 45, wind: "8 mph NE", forecast: "Perfect beach weather" };
 
-// NEW: Photo gallery
 const photoGallery = [
     { src: "/images/placeholders/naples_pier_sunset_4k.jpg", alt: "Naples Pier at Sunset" },
     { src: "/images/placeholders/everglades_airboat_action_4k.jpg", alt: "Everglades Adventure" },
@@ -83,20 +79,42 @@ const photoGallery = [
     { src: "/images/placeholders/marco_island_wide_beach.png", alt: "Marco Island Beach" },
 ];
 
-// NEW: Live activity
 const recentActivity = [
     { action: "booked", item: "3-Day Romantic Getaway", time: "2 min ago", location: "Chicago, IL" },
     { action: "downloaded", item: "Ultimate Food Guide", time: "5 min ago", location: "New York, NY" },
     { action: "planned", item: "Family Beach Vacation", time: "8 min ago", location: "Boston, MA" },
 ];
 
-// NEW: Quick tips
-const quickTips = [
-    { icon: "☀️", tip: "Best beach time: 7-10 AM", category: "Beach" },
-    { icon: "🍽️", tip: "Reserve dinner 2 weeks ahead", category: "Dining" },
-    { icon: "🚗", tip: "Free parking at Lowdermilk", category: "Parking" },
-    { icon: "🦀", tip: "Stone crab season: Oct-May", category: "Food" },
+// ENTERPRISE: Accreditations
+const accreditations = [
+    { name: "BBB A+ Rating", icon: "🏆" },
+    { name: "Google Verified", icon: "✓" },
+    { name: "TripAdvisor Partner", icon: "🦉" },
+    { name: "SSL Secured", icon: "🔒" },
+    { name: "GDPR Compliant", icon: "🛡️" },
 ];
+
+// ENTERPRISE: Editorial standards
+const editorialStandards = [
+    { title: "Independent Research", desc: "All recommendations based on firsthand visits and extensive research.", icon: "🔍" },
+    { title: "No Pay-to-Play", desc: "Businesses cannot pay for placement or higher rankings.", icon: "🚫" },
+    { title: "Monthly Verification", desc: "Every fact, price, and phone number verified monthly.", icon: "📅" },
+    { title: "Local Expert Review", desc: "All content reviewed by Naples residents before publishing.", icon: "👥" },
+    { title: "Transparent Updates", desc: "Last updated date shown on every page.", icon: "📝" },
+    { title: "Reader Corrections", desc: "We welcome and promptly address reader feedback.", icon: "✉️" },
+];
+
+// ENTERPRISE: FAQ
+const faqItems = [
+    { q: "Is Naples Vacation Planner really free?", a: "Yes, 100% free. We're supported by affiliate commissions when you book through our links, but this never affects our rankings or recommendations." },
+    { q: "How do you verify your information?", a: "Our team of local experts visits every restaurant, hotel, and attraction. We verify hours, prices, and contact info monthly." },
+    { q: "Do businesses pay for better placement?", a: "Never. Our rankings are based solely on quality, value, and reader feedback. We maintain strict editorial independence." },
+    { q: "Who writes your guides?", a: "Our team consists of Naples residents with 10+ years of local experience, supplemented by travel industry professionals." },
+    { q: "How often is content updated?", a: "Major guides are updated monthly. Event listings and time-sensitive content are updated weekly or as needed." },
+];
+
+// ENTERPRISE: Partner logos
+const partnerLogos = ["Visit Florida", "Naples Chamber", "Marco Island CVB", "Collier County", "SWFL Tourism", "AAA Approved"];
 
 // --- ANIMATED COMPONENTS ---
 
@@ -166,7 +184,6 @@ function FloatingBadge({ children, delay = 0 }: { children: React.ReactNode; del
     return <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay, duration: 0.5 }}><motion.div animate={{ y: [0, -5, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>{children}</motion.div></motion.div>;
 }
 
-// NEW: Live notification toast
 function LiveNotification() {
     const [current, setCurrent] = useState(0);
     const [visible, setVisible] = useState(true);
@@ -187,16 +204,9 @@ function LiveNotification() {
     return (
         <AnimatePresence>
             {visible && (
-                <motion.div
-                    initial={{ opacity: 0, x: -100 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -100 }}
-                    className="fixed bottom-6 left-6 z-50 bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 max-w-xs hidden md:block"
-                >
+                <motion.div initial={{ opacity: 0, x: -100 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -100 }} className="fixed bottom-6 left-6 z-50 bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 max-w-xs hidden md:block">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-ocean-500 to-teal-500 flex items-center justify-center text-white text-sm">
-                            {activity.action === "booked" ? "✓" : activity.action === "downloaded" ? "↓" : "📅"}
-                        </div>
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-ocean-500 to-teal-500 flex items-center justify-center text-white text-sm">{activity.action === "booked" ? "✓" : activity.action === "downloaded" ? "↓" : "📅"}</div>
                         <div>
                             <p className="text-sm text-gray-900 font-medium">Someone {activity.action}</p>
                             <p className="text-xs text-gray-500">{activity.item} · {activity.time}</p>
@@ -205,6 +215,33 @@ function LiveNotification() {
                 </motion.div>
             )}
         </AnimatePresence>
+    );
+}
+
+// FAQ Accordion
+function FAQAccordion() {
+    const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+    return (
+        <div className="space-y-4">
+            {faqItems.map((item, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+                    <button onClick={() => setOpenIndex(openIndex === i ? null : i)} className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors">
+                        <span className="font-bold text-gray-900 text-lg">{item.q}</span>
+                        <motion.span animate={{ rotate: openIndex === i ? 180 : 0 }} className="text-2xl text-gray-400">
+                            ↓
+                        </motion.span>
+                    </button>
+                    <AnimatePresence>
+                        {openIndex === i && (
+                            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+                                <div className="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">{item.a}</div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </motion.div>
+            ))}
+        </div>
     );
 }
 
@@ -217,13 +254,7 @@ export default function HomePage() {
     const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
     const textY = useTransform(scrollYProgress, [0, 1], [0, 50]);
 
-    const [currentTestimonial, setCurrentTestimonial] = useState(0);
     const [currentPhoto, setCurrentPhoto] = useState(0);
-
-    useEffect(() => {
-        const interval = setInterval(() => setCurrentTestimonial((prev) => (prev + 1) % testimonials.length), 5000);
-        return () => clearInterval(interval);
-    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => setCurrentPhoto((prev) => (prev + 1) % photoGallery.length), 4000);
@@ -297,8 +328,22 @@ export default function HomePage() {
                 </motion.div>
             </section>
 
+            {/* --- ENTERPRISE ACCREDITATIONS BAR --- */}
+            <section className="bg-gray-900 py-6 border-b border-gray-800">
+                <div className="max-w-7xl mx-auto px-4">
+                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                        {accreditations.map((acc, i) => (
+                            <motion.div key={acc.name} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+                                <span className="text-xl">{acc.icon}</span>
+                                <span className="text-sm font-medium">{acc.name}</span>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* --- LIVE WEATHER WIDGET --- */}
-            <section className="relative -mt-16 z-30 max-w-7xl mx-auto px-4">
+            <section className="relative z-30 max-w-7xl mx-auto px-4 py-8">
                 <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-col md:flex-row gap-4">
                     <div className="flex-1 bg-gradient-to-r from-ocean-500 to-teal-500 rounded-3xl p-6 text-white shadow-xl">
                         <div className="flex items-center justify-between">
@@ -331,7 +376,7 @@ export default function HomePage() {
             </section>
 
             {/* --- QUICK FEATURES BAR --- */}
-            <section className="max-w-6xl mx-auto px-4 py-12">
+            <section className="max-w-6xl mx-auto px-4 pb-12">
                 <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {quickFeatures.map((feature, i) => (
                         <Link key={feature.title} href={feature.link}>
@@ -343,6 +388,20 @@ export default function HomePage() {
                         </Link>
                     ))}
                 </motion.div>
+            </section>
+
+            {/* --- PARTNER LOGOS --- */}
+            <section className="py-12 bg-gray-50 border-y border-gray-100">
+                <div className="max-w-7xl mx-auto px-4">
+                    <p className="text-center text-sm text-gray-400 uppercase tracking-widest mb-8 font-medium">Official Tourism Partners</p>
+                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                        {partnerLogos.map((logo, i) => (
+                            <motion.div key={logo} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="text-gray-400 font-display font-bold text-lg hover:text-gray-600 transition-colors">
+                                {logo}
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
             </section>
 
             {/* --- TRENDING NOW --- */}
@@ -374,32 +433,6 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* --- PHOTO GALLERY CAROUSEL --- */}
-            <section className="py-20 bg-white relative overflow-hidden">
-                <div className="max-w-7xl mx-auto px-4">
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-4">Discover Paradise</h2>
-                        <p className="text-xl text-gray-600">Every corner of Naples tells a story</p>
-                    </motion.div>
-                    <div className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden">
-                        <AnimatePresence mode="wait">
-                            <motion.div key={currentPhoto} initial={{ opacity: 0, scale: 1.1 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.8 }} className="absolute inset-0">
-                                <SafeImage src={photoGallery[currentPhoto].src} alt={photoGallery[currentPhoto].alt} fill className="object-cover" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
-                                <div className="absolute bottom-8 left-8">
-                                    <h3 className="text-3xl font-display font-bold text-white">{photoGallery[currentPhoto].alt}</h3>
-                                </div>
-                            </motion.div>
-                        </AnimatePresence>
-                        <div className="absolute bottom-8 right-8 flex gap-2">
-                            {photoGallery.map((_, i) => (
-                                <button key={i} onClick={() => setCurrentPhoto(i)} className={`w-3 h-3 rounded-full transition-all ${i === currentPhoto ? 'bg-white w-8' : 'bg-white/40 hover:bg-white/60'}`} />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             {/* --- ANIMATED STATS --- */}
             <section className="py-20 relative overflow-hidden">
                 <MorphingBlobs />
@@ -416,14 +449,20 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* --- QUICK TIPS BAR --- */}
-            <section className="bg-ocean-50 py-8">
+            {/* --- EDITORIAL STANDARDS --- */}
+            <section className="py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-4">
-                    <div className="flex flex-wrap justify-center gap-6">
-                        {quickTips.map((tip, i) => (
-                            <motion.div key={tip.tip} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="flex items-center gap-3 bg-white px-5 py-3 rounded-full shadow-sm">
-                                <span className="text-2xl">{tip.icon}</span>
-                                <span className="text-gray-700 font-medium">{tip.tip}</span>
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+                        <span className="inline-block px-4 py-2 rounded-full bg-gray-100 text-gray-700 text-sm font-bold uppercase tracking-wider mb-4">Our Commitment to You</span>
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-4">Editorial Standards</h2>
+                        <p className="text-xl text-gray-600 max-w-2xl mx-auto">How we ensure every recommendation is trustworthy.</p>
+                    </motion.div>
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {editorialStandards.map((std, i) => (
+                            <motion.div key={std.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-all border border-gray-100">
+                                <span className="text-4xl block mb-4">{std.icon}</span>
+                                <h3 className="text-xl font-bold text-gray-900 mb-2">{std.title}</h3>
+                                <p className="text-gray-600">{std.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -431,7 +470,7 @@ export default function HomePage() {
             </section>
 
             {/* --- MEET OUR EXPERTS --- */}
-            <section className="py-24 bg-white">
+            <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
                 <div className="max-w-7xl mx-auto px-4">
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
                         <span className="inline-block px-4 py-2 rounded-full bg-purple-100 text-purple-700 text-sm font-bold uppercase tracking-wider mb-4">The Team Behind the Guides</span>
@@ -440,8 +479,11 @@ export default function HomePage() {
                     </motion.div>
                     <div className="grid md:grid-cols-3 gap-8">
                         {expertTeam.map((expert, i) => (
-                            <motion.div key={expert.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }} whileHover={{ y: -8 }} className="bg-gray-50 rounded-3xl p-8 text-center hover:shadow-xl transition-all">
-                                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-ocean-500 to-teal-500 flex items-center justify-center text-white text-3xl font-bold mx-auto mb-6">{expert.avatar}</div>
+                            <motion.div key={expert.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }} whileHover={{ y: -8 }} className="bg-white rounded-3xl p-8 text-center hover:shadow-xl transition-all border border-gray-100">
+                                <div className="relative inline-block mb-6">
+                                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-ocean-500 to-teal-500 flex items-center justify-center text-white text-3xl font-bold">{expert.avatar}</div>
+                                    {expert.verified && <span className="absolute -bottom-1 -right-1 w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center text-white text-sm border-4 border-white">✓</span>}
+                                </div>
                                 <h3 className="text-xl font-bold text-gray-900 mb-1">{expert.name}</h3>
                                 <p className="text-ocean-600 font-medium mb-2">{expert.role}</p>
                                 <p className="text-gray-500 text-sm mb-4">{expert.experience}</p>
@@ -450,8 +492,8 @@ export default function HomePage() {
                         ))}
                     </div>
                     <div className="text-center mt-12">
-                        <Link href="/about" className="inline-flex items-center gap-2 text-ocean-600 font-bold text-lg hover:text-ocean-800 transition-colors">
-                            Meet the full team <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>→</motion.span>
+                        <Link href="/about" className="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 transition-colors">
+                            Meet the Full Team <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>→</motion.span>
                         </Link>
                     </div>
                 </div>
@@ -504,6 +546,18 @@ export default function HomePage() {
                             </motion.div>
                         ))}
                     </div>
+                </div>
+            </section>
+
+            {/* --- FAQ SECTION --- */}
+            <section className="py-24 bg-gray-50">
+                <div className="max-w-3xl mx-auto px-4">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+                        <span className="inline-block px-4 py-2 rounded-full bg-amber-100 text-amber-700 text-sm font-bold uppercase tracking-wider mb-4">Common Questions</span>
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                        <p className="text-xl text-gray-600">Everything you need to know about Naples Vacation Planner.</p>
+                    </motion.div>
+                    <FAQAccordion />
                 </div>
             </section>
 
