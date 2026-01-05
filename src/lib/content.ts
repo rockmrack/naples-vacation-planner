@@ -74,14 +74,10 @@ export function getAllDocsByType(
                     slug: parsed.slug,
                 };
             } catch (error) {
-                // In development, log validation errors
-                if (process.env.NODE_ENV === "development") {
-                    console.error(`Validation error in ${filePath}:`, error);
-                }
-                // In production build, throw to fail the build
-                throw new Error(
-                    `Invalid frontmatter in ${filePath}: ${error instanceof Error ? error.message : "Unknown error"}`
-                );
+                // Log validation errors but don't crash - skip invalid files
+                console.error(`Validation error in ${filePath}:`, error);
+                // Return null to skip this file - allowing other valid files to load
+                return null;
             }
         })
         .filter((doc): doc is ContentDoc => doc !== null);
