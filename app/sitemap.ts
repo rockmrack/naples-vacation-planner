@@ -36,17 +36,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
 
     const contentRoutes = contentTypes.flatMap((type) => {
-        const docs = getAllDocsByType(type);
-        const routeBase = type === "itinerary" ? "itineraries" :
-            type === "where-to-stay" ? "where-to-stay" :
-                type === "day-trip" ? "day-trips" : "travel-tips";
+        try {
+            const docs = getAllDocsByType(type);
+            const routeBase = type === "itinerary" ? "itineraries" :
+                type === "where-to-stay" ? "where-to-stay" :
+                    type === "day-trip" ? "day-trips" : "travel-tips";
 
-        return docs.map((doc) => ({
-            url: `${baseUrl}/${routeBase}/${doc.frontmatter.slug}`,
-            lastModified: new Date(doc.frontmatter.updatedAt),
-            changeFrequency: "monthly" as const,
-            priority: type === "itinerary" ? 0.9 : 0.7,
-        }));
+            return docs.map((doc) => ({
+                url: `${baseUrl}/${routeBase}/${doc.frontmatter.slug}`,
+                lastModified: new Date(doc.frontmatter.updatedAt),
+                changeFrequency: "monthly" as const,
+                priority: type === "itinerary" ? 0.9 : 0.7,
+            }));
+        } catch (error) {
+            console.error(`Sitemap: Skipping type ${type} due to error:`, error);
+            // Return empty array to allow build to continue
+            return [];
+        }
     });
 
     return [...routes, ...contentRoutes];
