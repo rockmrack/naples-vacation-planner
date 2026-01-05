@@ -35,6 +35,7 @@ export const BaseFrontmatterSchema = z.object({
     tags: z.array(z.string()).default([]),
     featuredImage: z.string().min(1, "Featured image is required"),
     featuredImageAlt: z.string().optional(),
+    videoUrl: z.string().url().optional(), // YouTube or Vimeo URL
     canonicalUrl: z.string().url().optional(),
 });
 

@@ -16,6 +16,7 @@ import { SafeImage } from "@/src/components/SafeImage";
 import { EditorNote, ExpertTip, KeyStat, ProsCons, Rating } from "@/src/components/ContentComponents";
 import WeatherWidget from "@/src/components/WeatherWidget";
 import NewsletterSignup from "@/src/components/NewsletterSignup";
+import VideoEmbed from "@/src/components/VideoEmbed";
 
 const MapComponent = dynamic(() => import("@/src/components/MapComponent"), { ssr: false });
 
@@ -178,6 +179,11 @@ export default function ItineraryPage({
 
             {/* Disclosure */}
             <Disclosure variant="detailed" />
+
+            {/* Video Content */}
+            {fm.videoUrl && (
+                <VideoEmbed url={fm.videoUrl} title={`Video about ${fm.title}`} />
+            )}
 
             {/* Quick Summary */}
             <QuickSummary
