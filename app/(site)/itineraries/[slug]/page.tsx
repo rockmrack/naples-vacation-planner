@@ -15,6 +15,7 @@ import { Prose } from "@/src/components/Prose";
 import { SafeImage } from "@/src/components/SafeImage";
 import { EditorNote, ExpertTip, KeyStat, ProsCons, Rating } from "@/src/components/ContentComponents";
 import WeatherWidget from "@/src/components/WeatherWidget";
+import NewsletterSignup from "@/src/components/NewsletterSignup";
 
 const MapComponent = dynamic(() => import("@/src/components/MapComponent"), { ssr: false });
 
@@ -201,6 +202,14 @@ export default function ItineraryPage({
             <Prose>
                 <MDXRemote source={doc.body} components={mdxComponents} />
             </Prose>
+
+            {/* Newsletter Signup */}
+            <div className="my-12">
+                <NewsletterSignup
+                    title="Enjoyed This Itinerary?"
+                    description="Get more expert Naples travel guides, insider tips, and a free vacation planning PDF delivered to your inbox."
+                />
+            </div>
 
             {/* Related Posts */}
             {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}

@@ -14,6 +14,7 @@ import {
 import { TestimonialsCarousel } from "@/src/components/TestimonialsCarousel";
 import { getAllAuthors } from "@/src/lib/authors";
 import { getFeaturedTestimonials, getAverageRating, getVerifiedReviewCount } from "@/src/lib/testimonials";
+import NewsletterSignup from "@/src/components/NewsletterSignup";
 
 // --- 10x CONTENT DATA ---
 
@@ -369,20 +370,15 @@ export default function HomePage() {
                         Join 8,000+ subscribers who get our "Hidden Naples" guide, seasonal alerts, and restaurant opening notifications.
                     </p>
 
-                    <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            className="flex-1 px-8 py-5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-ocean-500 backdrop-blur-sm"
-                            required
-                        />
-                        <button
-                            type="submit"
-                            className="px-8 py-5 rounded-xl bg-white text-gray-900 font-bold hover:bg-gray-100 transition-colors shadow-lg"
-                        >
-                            Subscribe
-                        </button>
-                    </form>
+                    <NewsletterSignup
+                        variant="hero"
+                        title=""
+                        description=""
+                    />
+
+                    <p className="mt-6 text-sm text-gray-500">
+                        📖 Free "Ultimate Naples Vacation Planner" PDF included with signup
+                    </p>
                 </div>
             </section>
 
