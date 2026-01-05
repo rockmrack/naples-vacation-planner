@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import dynamic from "next/dynamic";
 import { site } from "@/src/config/site";
 import { getAllSlugs, getDocBySlug, getAllDocsByType, getRelatedPosts } from "@/src/lib/content";
 import { isItinerary, type ItineraryFrontmatter } from "@/src/lib/content-schema";
@@ -13,6 +14,9 @@ import { RelatedPosts } from "@/src/components/RelatedPosts";
 import { Prose } from "@/src/components/Prose";
 import { SafeImage } from "@/src/components/SafeImage";
 import { EditorNote, ExpertTip, KeyStat, ProsCons, Rating } from "@/src/components/ContentComponents";
+import WeatherWidget from "@/src/components/WeatherWidget";
+
+const MapComponent = dynamic(() => import("@/src/components/MapComponent"), { ssr: false });
 
 export const dynamicParams = false;
 
@@ -143,16 +147,21 @@ export default function ItineraryPage({
                     </span>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-gray-900">
-                    {fm.title}
-                </h1>
+                <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+                    <div>
+                        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-gray-900">
+                            {fm.title}
+                        </h1>
 
-                <p className="mt-4 text-xl text-gray-600">{fm.description}</p>
+                        <p className="mt-4 text-xl text-gray-600">{fm.description}</p>
 
-                <div className="mt-6 flex items-center gap-4 text-sm text-gray-500">
-                    <span>Last updated: {new Date(fm.updatedAt).toLocaleDateString()}</span>
-                    <span>·</span>
-                    <span>{doc.readingTime}</span>
+                        <div className="mt-6 flex items-center gap-4 text-sm text-gray-500">
+                            <span>Last updated: {new Date(fm.updatedAt).toLocaleDateString()}</span>
+                            <span>·</span>
+                            <span>{doc.readingTime}</span>
+                        </div>
+                    </div>
+                    <WeatherWidget className="w-full lg:w-64 flex-shrink-0" />
                 </div>
             </header>
 
@@ -177,6 +186,16 @@ export default function ItineraryPage({
                 mustBook={fm.bookAhead}
                 duration={`${fm.days} ${fm.days === 1 ? "day" : "days"}`}
             />
+
+            {/* Interactive Map - Render if locations exist */}
+            {fm.locations && fm.locations.length > 0 && (
+                <div className="my-12">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <span>📍</span> Itinerary Map
+                    </h2>
+                    <MapComponent locations={fm.locations} />
+                </div>
+            )}
 
             {/* MDX Content */}
             <Prose>

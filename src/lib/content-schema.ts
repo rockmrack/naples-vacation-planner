@@ -43,6 +43,12 @@ export const ItineraryFrontmatterSchema = BaseFrontmatterSchema.extend({
     audience: z.enum(["couples", "families", "luxury", "nature", "all"]),
     bookAhead: z.array(z.string()).default([]),
     mapEmbedUrl: z.string().url().optional(),
+    locations: z.array(z.object({
+        title: z.string(),
+        description: z.string().optional(),
+        lat: z.number(),
+        lng: z.number()
+    })).optional(),
 });
 
 export type ItineraryFrontmatter = z.infer<typeof ItineraryFrontmatterSchema>;
