@@ -31,21 +31,21 @@ const monthlyEdit = {
 
 const conciergePicks = [
     {
-        title: "Sunset Dining",
+        title: "Waterfront Dining",
         image: "/images/placeholders/naples_finedining_waterfront_sunset_4k.png",
-        path: "/travel-tips/best-places-for-sunset-dining", // Placeholder link
+        path: "/travel-tips/best-waterfront-dining",
         tag: "Dining"
     },
     {
-        title: "Hidden Boardwalks",
-        image: "/images/placeholders/naples_hidden_clam_pass_boardwalk_4k.png",
-        path: "/where-to-stay/park-shore",
-        tag: "Nature"
+        title: "Free Things to Do",
+        image: "/images/placeholders/naples_pier_sunny_winter_day_4k.jpg",
+        path: "/travel-tips/free-things-to-do-naples",
+        tag: "Budget"
     },
     {
-        title: "Chic Shopping",
-        image: "/images/placeholders/naples_3rd_street_south_shopping_4k.png",
-        path: "/travel-tips/shopping-guide", // Placeholder
+        title: "Best Coffee Shops",
+        image: "/images/placeholders/naples_artisan_coffee_pour.png",
+        path: "/travel-tips/best-coffee-shops",
         tag: "Lifestyle"
     }
 ];
