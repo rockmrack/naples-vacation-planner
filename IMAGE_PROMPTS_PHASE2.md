@@ -1,33 +1,33 @@
 # Image Generation Prompts - Phase 2 (Fixing Duplicates)
 
 ## Wildlife & Nature
-### 1. Wildlife Photography
+### 1. Wildlife Photography [DONE]
 - **File:** `content/itineraries/naples-wildlife-photography-tour.mdx`
 - **Image:** `naples-wildlife-photography-dolphin.jpg`
 - **Prompt:** Photorealistic 4k telephoto shot of a playful bottlenose dolphin jumping in the wake of a boat in Naples Bay, sparkling water, sunny day.
 
-### 2. Fishing Charter
+### 2. Fishing Charter [DONE]
 - **File:** `content/itineraries/naples-fishing-charter-guide.mdx`
 - **Image:** `naples-offshore-fishing-charter.jpg`
 - **Prompt:** Photorealistic 4k action shot of deep sea fishing off the coast of Naples, Florida, holding a large fish on a white boat, deep blue ocean water.
 
-### 3. Birding
+### 3. Birding [DONE]
 - **File:** `content/itineraries/naples-birding-guide.mdx`
 - **Image:** `naples-roseate-spoonbill.jpg`
 - **Prompt:** Photorealistic 4k close-up of a pink Roseate Spoonbill wading in shallow water in the mangroves near Naples, lush green background.
 
-### 4. Ten Thousand Islands
+### 4. Ten Thousand Islands [DONE]
 - **File:** `content/day-trips/ten-thousand-islands-tours.mdx`
 - **Image:** `ten-thousand-islands-aerial-mangroves.jpg`
 - **Prompt:** Photorealistic 4k aerial view of the Ten Thousand Islands maze of mangrove islets and waterways near Marco Island, golden hour lighting.
 
 ## Wellness, History, & Solo
-### 5. Wellness Retreat
+### 5. Wellness Retreat [DONE]
 - **File:** `content/itineraries/naples-wellness-spa-retreat.mdx`
 - **Image:** `naples-luxury-spa-yoga.jpg`
 - **Prompt:** Photorealistic 4k image of a woman doing yoga on a peaceful white sand beach in Naples at sunrise, calm ocean, soft pastel colors.
 
-### 6. Solo Traveler
+### 6. Solo Traveler [DONE]
 - **File:** `content/itineraries/naples-solo-traveler-guide.mdx`
 - **Image:** `naples-solo-traveler-cafe.jpg`
 - **Prompt:** Photorealistic 4k image of a solo traveler enjoying an espresso and a book at a chic sidewalk cafe on 5th Avenue South, Naples, relaxed atmosphere.
@@ -59,18 +59,18 @@
 - **Image:** `naples-golisano-childrens-museum.jpg`
 - **Prompt:** Photorealistic 4k bright and colorful interior of an interactive children's museum in Naples, happy family playing.
 
-### 12. Art & Design
+### 12. Art & Design [DONE]
 - **File:** `content/itineraries/naples-art-design-lovers-guide.mdx`
 - **Image:** `naples-art-gallery-interior.jpg`
 - **Prompt:** Photorealistic 4k image of a modern art gallery interior in the Naples Design District, featuring contemporary paintings and sculptures, elegant lighting.
 
 ## Shopping & Nomad
-### 13. Fashion Shopping
+### 13. Fashion Shopping [DONE]
 - **File:** `content/itineraries/naples-fashion-shopping-guide.mdx`
 - **Image:** `naples-waterside-shops.jpg`
 - **Prompt:** Photorealistic 4k image of the Waterside Shops in Naples, open-air luxury shopping mall with fountains and lush landscaping, elegant shopper walking.
 
-### 14. Digital Nomad
+### 14. Digital Nomad [DONE]
 - **File:** `content/itineraries/naples-digital-nomad-guide.mdx`
 - **Image:** `naples-digital-nomad-workspace.jpg`
 - **Prompt:** Photorealistic 4k image of a modern coworking space or coffee shop in Naples with a view of palm trees, laptop on table, productive vibe.
@@ -97,7 +97,7 @@
 - **Image:** `naples-family-sandcastle.jpg`
 - **Prompt:** Photorealistic 4k image of a young family building a sandcastle on a white sand beach in Naples, gentle waves, sunny day.
 
-### 19. Kayaking
+### 19. Kayaking [DONE]
 - **File:** `content/itineraries/naples-kayaking-mangrove-guide.mdx`
 - **Image:** `naples-kayaking-mangrove-tunnels.jpg`
 - **Prompt:** Photorealistic 4k image of a person kayaking through a narrow green mangrove tunnel in Naples/Everglades, filtered sunlight, calm water.
