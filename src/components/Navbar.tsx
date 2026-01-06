@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { site } from "@/src/config/site";
+import { SearchBar } from "./SearchBar";
 
 export function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,6 +35,8 @@ export function Navbar() {
                                 {link.label}
                             </Link>
                         ))}
+                        <div className="w-px h-6 bg-gray-200 mx-2" />
+                        <SearchBar />
                         <div className="w-px h-6 bg-gray-200 mx-2" />
                         <Link
                             href="/plan"

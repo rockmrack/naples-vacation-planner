@@ -1,0 +1,236 @@
+/* Print Styles for Naples Vacation Planner */
+
+@media print {
+
+    /* Hide non-essential elements */
+    .navbar,
+    .footer,
+    .back-to-top,
+    .floating-cta,
+    .social-proof,
+    .exit-popup,
+    .newsletter-signup,
+    .affiliate-cta,
+    .lead-magnet,
+    .share-buttons,
+    .comments-section,
+    .related-content,
+    .sidebar,
+    .concierge-chat,
+    .dark-mode-toggle,
+    .search-bar,
+    .breadcrumbs,
+    nav,
+    footer,
+    aside,
+    [data-print-hide="true"] {
+        display: none !important;
+    }
+
+    /* Reset colors for print */
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+
+    /* Ensure text is black */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    li,
+    td,
+    th,
+    span,
+    a {
+        color: black !important;
+        text-shadow: none !important;
+    }
+
+    /* Links */
+    a {
+        text-decoration: underline;
+    }
+
+    a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 10pt;
+        color: #666;
+    }
+
+    /* Headers */
+    h1 {
+        font-size: 24pt;
+        margin-bottom: 12pt;
+        border-bottom: 2pt solid #ccc;
+        padding-bottom: 6pt;
+    }
+
+    h2 {
+        font-size: 18pt;
+        margin-top: 18pt;
+        margin-bottom: 8pt;
+    }
+
+    h3 {
+        font-size: 14pt;
+        margin-top: 14pt;
+        margin-bottom: 6pt;
+    }
+
+    /* Page breaks */
+    h1,
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+
+    p,
+    ul,
+    ol,
+    table {
+        orphans: 3;
+        widows: 3;
+    }
+
+    /* Images */
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+
+    /* Featured image */
+    .featured-image {
+        max-height: 300pt;
+        object-fit: cover;
+    }
+
+    /* Tables */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        border: 1pt solid #ccc;
+        padding: 6pt;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f5f5f5 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Quick Summary box */
+    .quick-summary {
+        border: 1pt solid #ccc;
+        padding: 12pt;
+        margin: 12pt 0;
+        background-color: #f9f9f9 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Day headers in itineraries */
+    .day-header {
+        background-color: #e0e0e0 !important;
+        padding: 8pt 12pt;
+        margin-top: 16pt;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Map component */
+    .map-component {
+        display: none !important;
+    }
+
+    .map-component+.print-map-notice {
+        display: block !important;
+        padding: 12pt;
+        border: 1pt solid #ccc;
+        text-align: center;
+        color: #666;
+    }
+
+    /* Print-specific content */
+    .print-only {
+        display: block !important;
+    }
+
+    .screen-only {
+        display: none !important;
+    }
+
+    /* Page margins */
+    @page {
+        margin: 1in;
+    }
+
+    @page :first {
+        margin-top: 0.5in;
+    }
+
+    /* Footer with URL */
+    .print-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 9pt;
+        color: #999;
+        padding: 6pt 0;
+        border-top: 1pt solid #ccc;
+    }
+
+    /* Main content area */
+    article {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Remove gradients and shadows */
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    /* Force background colors where needed */
+    .bg-force-print {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+/* Print button styling (screen only) */
+.print-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    color: #374151;
+    transition: all 0.2s;
+}
+
+.print-button:hover {
+    background-color: #e5e7eb;
+}
+
+@media print {
+    .print-button {
+        display: none !important;
+    }
+}
