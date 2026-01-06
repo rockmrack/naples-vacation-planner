@@ -1,3 +1,6 @@
+import os
+import re
+
 # Directory containing content
 HOTELS_DIR = 'c:/Users/rossd/source/naples-vacation-planner/content/hotels'
 NEIGHBORHOODS_DIR = 'c:/Users/rossd/source/naples-vacation-planner/content/where-to-stay'
