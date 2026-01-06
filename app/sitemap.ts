@@ -52,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
                 priority,
             }));
         } catch (error) {
-            console.error(`Sitemap: Skipping type ${type} due to error:`, error);
+            console.error(`Sitemap: Skipping type ${type} due to error:`, error instanceof Error ? error.message : String(error));
             return [];
         }
     });

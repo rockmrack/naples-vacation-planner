@@ -50,7 +50,7 @@ export function getRelatedContent(
             }
         } catch (error) {
             // Skip content types that error
-            console.error(`Error getting related content for type ${type}:`, error);
+            console.error(`Error getting related content for type ${type}:`, error instanceof Error ? error.message : String(error));
         }
     }
 
@@ -77,7 +77,7 @@ export function getFeaturedContent(
             slug: doc.frontmatter.slug
         }));
     } catch (error) {
-        console.error(`Error getting featured content for type ${contentType}:`, error);
+        console.error(`Error getting featured content for type ${contentType}:`, error instanceof Error ? error.message : String(error));
         return [];
     }
 }

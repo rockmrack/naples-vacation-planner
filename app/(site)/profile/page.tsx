@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { useAuth } from '@/src/lib/auth-context';
 import { useRouter } from 'next/navigation';
 
+export const dynamic = 'force-dynamic';
+
 export default function ProfilePage() {
     const { user, isLoading, isAuthenticated, logout } = useAuth();
     const router = useRouter();
