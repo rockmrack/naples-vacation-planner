@@ -12,6 +12,7 @@ import {
     ProfessionalTrustFooter,
 } from "@/src/components/UltimateTrust";
 import NewsletterSignup from "@/src/components/NewsletterSignup";
+import { LiveActivityTicker, FloatingBookingCTA, UrgencyBanner, QuickStartWizard } from "@/src/components/ConversionElements";
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // THE DEFINITIVE NAPLES TOURISM AUTHORITY - WORLD-CLASS ENTERPRISE CONTENT DATA
@@ -175,7 +176,10 @@ export default function HomePage() {
 
     return (
         <div className="bg-white overflow-hidden">
+            <UrgencyBanner />
             <AwardsBanner />
+            <LiveActivityTicker />
+            <FloatingBookingCTA />
 
             {/* ═══ CINEMATIC HERO ═══ */}
             <section ref={heroRef} className="relative min-h-screen w-full overflow-hidden flex items-center">
@@ -241,6 +245,9 @@ export default function HomePage() {
                                 </motion.span>
                             ))}
                         </motion.div>
+
+                        {/* Quick Start Wizard */}
+                        <QuickStartWizard />
                     </div>
                 </motion.div>
 
