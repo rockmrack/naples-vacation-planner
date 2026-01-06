@@ -13,6 +13,9 @@ import {
 } from "@/src/components/UltimateTrust";
 import NewsletterSignup from "@/src/components/NewsletterSignup";
 import { LiveActivityTicker, FloatingBookingCTA, UrgencyBanner, QuickStartWizard } from "@/src/components/ConversionElements";
+import { PrivateExperienceMarketplace } from "@/src/components/PrivateExperiences";
+import { WellnessHub } from "@/src/components/WellnessHub";
+import { PremiumMembership } from "@/src/components/PremiumMembership";
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // THE DEFINITIVE NAPLES TOURISM AUTHORITY - WORLD-CLASS ENTERPRISE CONTENT DATA
@@ -486,6 +489,15 @@ export default function HomePage() {
                     </motion.div>
                 </div>
             </section>
+
+            {/* ═══ PRIVATE EXPERIENCES MARKETPLACE ═══ */}
+            <PrivateExperienceMarketplace />
+
+            {/* ═══ WELLNESS & LONGEVITY HUB ═══ */}
+            <WellnessHub />
+
+            {/* ═══ PREMIUM MEMBERSHIP ═══ */}
+            <PremiumMembership />
 
             {/* ═══ NEWSLETTER ═══ */}
             <section className="py-24 bg-gray-900">
