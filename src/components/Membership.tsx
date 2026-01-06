@@ -191,10 +191,6 @@ export function MembershipPricing() {
                         </div>
                     ))}
                 </div>
-
-                <p className="text-center text-gray-500 text-sm mt-8">
-                    Cancel anytime. 7-day money-back guarantee on all paid plans.
-                </p>
             </div>
         </section>
     );

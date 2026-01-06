@@ -135,9 +135,6 @@ export function LeadMagnetCTA({
                         {status === 'loading' ? 'Sending...' : buttonText}
                     </button>
                 </form>
-                <p className="text-xs text-white/70 mt-3 text-center">
-                    No spam. Unsubscribe anytime.
-                </p>
             </div>
         );
     }

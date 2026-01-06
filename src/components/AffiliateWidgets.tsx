@@ -162,10 +162,6 @@ export function HotelComparison({
                     </tbody>
                 </table>
             </div>
-
-            <p className="text-xs text-gray-400 mt-4 text-center">
-                Prices are approximate and may vary. We may earn a commission when you book through our links.
-            </p>
         </div>
     );
 }
@@ -222,9 +218,6 @@ export function BookingWidget({
                 >
                     Check Availability →
                 </a>
-                <p className="text-xs text-white/60 mt-3 text-center">
-                    Best price guarantee
-                </p>
             </div>
         );
     }
@@ -282,10 +275,6 @@ export function BookingWidget({
             >
                 Check Availability →
             </a>
-
-            <p className="text-xs text-gray-400 mt-3 text-center">
-                Prices may vary. Clicking will redirect to our booking partner.
-            </p>
         </div>
     );
 }
