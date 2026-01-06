@@ -16,6 +16,7 @@ import { LiveActivityTicker, FloatingBookingCTA, UrgencyBanner, QuickStartWizard
 import { PrivateExperienceMarketplace } from "@/src/components/PrivateExperiences";
 import { WellnessHub } from "@/src/components/WellnessHub";
 import { PremiumMembership } from "@/src/components/PremiumMembership";
+import { MultiGenTripPlanner } from "@/src/components/MultiGenTripPlanner";
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // THE DEFINITIVE NAPLES TOURISM AUTHORITY - WORLD-CLASS ENTERPRISE CONTENT DATA
@@ -495,6 +496,9 @@ export default function HomePage() {
 
             {/* ═══ WELLNESS & LONGEVITY HUB ═══ */}
             <WellnessHub />
+
+            {/* ═══ MULTI-GENERATIONAL TRAVEL ═══ */}
+            <MultiGenTripPlanner />
 
             {/* ═══ PREMIUM MEMBERSHIP ═══ */}
             <PremiumMembership />

@@ -5,6 +5,7 @@ import { site } from "@/src/config/site";
 import { getOrganizationSchema, getWebSiteSchema } from "@/src/lib/seo";
 import { Navbar } from "@/src/components/Navbar";
 import { Footer } from "@/src/components/Footer";
+import { ConciergeChat } from "@/src/components/ConciergeChat";
 import "@/src/styles/globals.css";
 
 const inter = Inter({
@@ -87,6 +88,9 @@ export default function RootLayout({
 
                 {/* Main Content */}
                 <main className="min-h-[calc(100vh-4rem)]">{children}</main>
+
+                {/* Global Concierge Chat Widget */}
+                <ConciergeChat />
 
                 <Footer />
 
