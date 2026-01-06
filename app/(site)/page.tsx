@@ -17,6 +17,7 @@ import { PrivateExperienceMarketplace } from "@/src/components/PrivateExperience
 import { WellnessHub } from "@/src/components/WellnessHub";
 import { PremiumMembership } from "@/src/components/PremiumMembership";
 import { MultiGenTripPlanner } from "@/src/components/MultiGenTripPlanner";
+import { RecommendedForYou, TravelStyleQuiz } from "@/src/components/Personalization";
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // THE DEFINITIVE NAPLES TOURISM AUTHORITY - WORLD-CLASS ENTERPRISE CONTENT DATA
@@ -503,6 +504,9 @@ export default function HomePage() {
             {/* ═══ PREMIUM MEMBERSHIP ═══ */}
             <PremiumMembership />
 
+            {/* ═══ PERSONALIZED RECOMMENDATIONS ═══ */}
+            <RecommendedForYou />
+
             {/* ═══ NEWSLETTER ═══ */}
             <section className="py-24 bg-gray-900">
                 <div className="max-w-3xl mx-auto px-4 text-center">
@@ -519,6 +523,9 @@ export default function HomePage() {
             <MediaFeaturesSection />
             <TrustGuarantee />
             <ProfessionalTrustFooter />
+
+            {/* ═══ PERSONALIZATION QUIZ ═══ */}
+            <TravelStyleQuiz />
         </div>
     );
 }
