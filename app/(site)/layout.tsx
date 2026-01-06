@@ -6,6 +6,7 @@ import { getOrganizationSchema, getWebSiteSchema } from "@/src/lib/seo";
 import { Navbar } from "@/src/components/Navbar";
 import { Footer } from "@/src/components/Footer";
 import { ConciergeChat } from "@/src/components/ConciergeChat";
+import { TouristDestinationSchema, TravelAgencySchema } from "@/src/components/SchemaMarkup";
 import "@/src/styles/globals.css";
 
 const inter = Inter({
@@ -57,6 +58,13 @@ export const metadata: Metadata = {
     robots: {
         index: true,
         follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+            'max-video-preview': -1,
+        },
     },
 };
 
@@ -83,6 +91,10 @@ export default function RootLayout({
                         __html: JSON.stringify(getWebSiteSchema()),
                     }}
                 />
+
+                {/* Tourist Destination & Travel Agency Schemas */}
+                <TouristDestinationSchema />
+                <TravelAgencySchema />
 
                 <Navbar />
 

@@ -39,6 +39,8 @@ export const BaseFrontmatterSchema = z.object({
     canonicalUrl: z.string().url().optional(),
 });
 
+export type BaseFrontmatter = z.infer<typeof BaseFrontmatterSchema>;
+
 // Itinerary-specific schema
 export const ItineraryFrontmatterSchema = BaseFrontmatterSchema.extend({
     type: z.literal("itinerary"),
