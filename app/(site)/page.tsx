@@ -18,6 +18,7 @@ import { WellnessHub } from "@/src/components/WellnessHub";
 import { PremiumMembership } from "@/src/components/PremiumMembership";
 import { MultiGenTripPlanner } from "@/src/components/MultiGenTripPlanner";
 import { RecommendedForYou, TravelStyleQuiz } from "@/src/components/Personalization";
+import { TripCostCalculator } from "@/src/components/TripCostCalculator";
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // THE DEFINITIVE NAPLES TOURISM AUTHORITY - WORLD-CLASS ENTERPRISE CONTENT DATA
@@ -500,6 +501,9 @@ export default function HomePage() {
 
             {/* ═══ MULTI-GENERATIONAL TRAVEL ═══ */}
             <MultiGenTripPlanner />
+
+            {/* ═══ TRIP COST CALCULATOR ═══ */}
+            <TripCostCalculator />
 
             {/* ═══ PREMIUM MEMBERSHIP ═══ */}
             <PremiumMembership />
