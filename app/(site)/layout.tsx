@@ -10,7 +10,6 @@ import { TouristDestinationSchema, TravelAgencySchema } from "@/src/components/S
 import { BackToTop } from "@/src/components/BackToTop";
 import { FloatingCTA } from "@/src/components/FloatingCTA";
 import { SocialProofNotifications } from "@/src/components/SocialProof";
-import { ExitIntentPopup } from "@/src/components/ExitIntentPopup";
 import "@/src/styles/globals.css";
 import "@/src/styles/print.css";
 
@@ -113,7 +112,6 @@ export default function RootLayout({
                 <BackToTop />
                 <FloatingCTA />
                 <SocialProofNotifications />
-                <ExitIntentPopup magnetType="general" />
 
                 <Footer />
 
