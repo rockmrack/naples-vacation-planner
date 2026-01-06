@@ -10,6 +10,7 @@ import { TouristDestinationSchema, TravelAgencySchema } from "@/src/components/S
 import { BackToTop } from "@/src/components/BackToTop";
 import { FloatingCTA } from "@/src/components/FloatingCTA";
 import { SocialProofNotifications } from "@/src/components/SocialProof";
+import { Providers } from "@/src/components/Providers";
 import "@/src/styles/globals.css";
 import "@/src/styles/print.css";
 
@@ -82,40 +83,42 @@ export default function RootLayout({
     return (
         <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
             <body className="min-h-screen bg-gray-50 text-gray-900 font-sans">
-                {/* Schema.org structured data */}
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify(getOrganizationSchema()),
-                    }}
-                />
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify(getWebSiteSchema()),
-                    }}
-                />
+                <Providers>
+                    {/* Schema.org structured data */}
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{
+                            __html: JSON.stringify(getOrganizationSchema()),
+                        }}
+                    />
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{
+                            __html: JSON.stringify(getWebSiteSchema()),
+                        }}
+                    />
 
-                {/* Tourist Destination & Travel Agency Schemas */}
-                <TouristDestinationSchema />
-                <TravelAgencySchema />
+                    {/* Tourist Destination & Travel Agency Schemas */}
+                    <TouristDestinationSchema />
+                    <TravelAgencySchema />
 
-                <Navbar />
+                    <Navbar />
 
-                {/* Main Content */}
-                <main className="min-h-[calc(100vh-4rem)]">{children}</main>
+                    {/* Main Content */}
+                    <main className="min-h-[calc(100vh-4rem)]">{children}</main>
 
-                {/* Global Concierge Chat Widget */}
-                <ConciergeChat />
+                    {/* Global Concierge Chat Widget */}
+                    <ConciergeChat />
 
-                {/* Global Enhancement Components */}
-                <BackToTop />
-                <FloatingCTA />
-                <SocialProofNotifications />
+                    {/* Global Enhancement Components */}
+                    <BackToTop />
+                    <FloatingCTA />
+                    <SocialProofNotifications />
 
-                <Footer />
+                    <Footer />
+                </Providers>
 
-                {/* GA4 Analytics (optional) */}
+                {/* GA4 Analytics (optional - outside Providers since scripts don't need React context) */}
                 {gaId && (
                     <>
                         <Script
