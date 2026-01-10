@@ -1244,3 +1244,4 @@ Once affiliate links are live:
 If you tell me which hotel affiliate program you plan to use first (or the one you're applying for), I'll show you exactly what kinds of deep links you should create for Naples (generic Naples search vs Old Naples vs Vanderbilt Beach) and where each link should be placed across your first 15 pages for maximum conversions.
 
 
+# Build trigger Sat, Jan 10, 2026  3:16:47 AM
