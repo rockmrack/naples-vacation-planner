@@ -4,6 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import dynamic from "next/dynamic";
 import { site } from "@/src/config/site";
 import { getAllSlugs, getDocBySlug, getAllDocsByType, getRelatedPosts } from "@/src/lib/content";
+import { getAuthorBySlug } from "@/src/lib/authors";
 import { isItinerary, type ItineraryFrontmatter } from "@/src/lib/content-schema";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import { Disclosure } from "@/src/components/Disclosure";
@@ -16,7 +17,7 @@ import { SafeImage } from "@/src/components/SafeImage";
 import { EditorNote, ExpertTip, KeyStat, ProsCons, Rating } from "@/src/components/ContentComponents";
 import WeatherWidget from "@/src/components/WeatherWidget";
 import NewsletterSignup from "@/src/components/NewsletterSignup";
-import VideoEmbed from "@/src/components/VideoEmbed";
+import { ArticleAuthorByline } from "@/src/components/ArticleAuthor";
 
 const MapComponent = dynamic(() => import("@/src/components/MapComponent"), { ssr: false });
 
@@ -103,6 +104,22 @@ export default function ItineraryPage({
     }
     const relatedPosts = getRelatedPosts(doc, allItineraries, 3);
 
+    // Get Author Data
+    const author = getAuthorBySlug(fm.author) || {
+        slug: "naples-vacation-planner",
+        name: fm.author,
+        title: "Editor",
+        avatar: "/images/logo.png",
+        bio: "Naples Vacation Planner Editorial Team",
+        shortBio: "Naples Vacation Planner Editorial Team",
+        credentials: [],
+        expertise: [],
+        socialLinks: {},
+        yearsExperience: 10,
+        articlesWritten: 100,
+        verifiedExpert: true
+    };
+
     // Article Schema
     const articleSchema = {
         "@context": "https://schema.org",
@@ -113,14 +130,18 @@ export default function ItineraryPage({
         datePublished: fm.publishedAt,
         dateModified: fm.updatedAt,
         author: {
-            "@type": "Organization",
-            name: fm.author,
-            url: site.url,
+            "@type": "Person",
+            "name": author.name,
+            "url": `https://naplesvacationplanner.com/authors/${author.slug}`,
+            "jobTitle": author.title,
+            "image": author.avatar ? `https://naplesvacationplanner.com${author.avatar}` : undefined,
+            "description": author.shortBio,
+            "sameAs": Object.values(author.socialLinks || {})
         },
         publisher: {
             "@type": "Organization",
-            name: site.name,
-            url: site.url,
+            "name": site.name,
+            "url": site.url,
         },
     };
 
@@ -157,11 +178,11 @@ export default function ItineraryPage({
 
                         <p className="mt-4 text-xl text-gray-600">{fm.description}</p>
 
-                        <div className="mt-6 flex items-center gap-4 text-sm text-gray-500">
-                            <span>Last updated: {new Date(fm.updatedAt).toLocaleDateString()}</span>
-                            <span>·</span>
-                            <span>{doc.readingTime}</span>
-                        </div>
+                        <ArticleAuthorByline
+                            author={author}
+                            updatedAt={fm.updatedAt}
+                            readingTime={doc.readingTime}
+                        />
                     </div>
                     <WeatherWidget className="w-full lg:w-64 flex-shrink-0" />
                 </div>
@@ -176,16 +197,6 @@ export default function ItineraryPage({
                     className="w-full aspect-[21/9] object-cover"
                 />
             </div>
-
-            {/* Video Content */}
-            {fm.videoUrl && (
-                <div className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <span>🎥</span> Video Tour
-                    </h2>
-                    <VideoEmbed url={fm.videoUrl} title={`Video about ${fm.title}`} />
-                </div>
-            )}
 
             {/* Disclosure */}
             <Disclosure variant="detailed" />

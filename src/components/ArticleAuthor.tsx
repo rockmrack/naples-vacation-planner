@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { type Author } from "@/src/lib/authors";
+import { FactCheckedBadge } from "@/src/components/UltimateTrust";
 
 interface ArticleAuthorBylineProps {
     author: Author;
@@ -25,12 +26,7 @@ export function ArticleAuthorByline({ author, updatedAt, readingTime }: ArticleA
                                 {author.name}
                             </Link>
                             {author.verifiedExpert && (
-                                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-xs font-medium">
-                                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
-                                    </svg>
-                                    Verified Expert
-                                </span>
+                                <FactCheckedBadge variant="inline" />
                             )}
                         </div>
                         <p className="text-sm text-gray-500">{author.title}</p>
