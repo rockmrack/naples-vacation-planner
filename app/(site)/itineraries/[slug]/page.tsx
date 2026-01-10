@@ -18,6 +18,8 @@ import { EditorNote, ExpertTip, KeyStat, ProsCons, Rating } from "@/src/componen
 import WeatherWidget from "@/src/components/WeatherWidget";
 import NewsletterSignup from "@/src/components/NewsletterSignup";
 import { ArticleAuthorByline } from "@/src/components/ArticleAuthor";
+import { ReviewsSection } from "@/src/components/Reviews";
+import { getAggregateRating } from "@/src/data/reviews";
 
 const MapComponent = dynamic(() => import("@/src/components/MapComponent"), { ssr: false });
 
@@ -120,6 +122,9 @@ export default function ItineraryPage({
         verifiedExpert: true
     };
 
+    // Get Review Data
+    const aggregateRating = getAggregateRating(fm.slug);
+
     // Article Schema
     const articleSchema = {
         "@context": "https://schema.org",
@@ -143,6 +148,13 @@ export default function ItineraryPage({
             "name": site.name,
             "url": site.url,
         },
+        ...(aggregateRating && {
+            aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: aggregateRating.ratingValue,
+                reviewCount: aggregateRating.reviewCount,
+            }
+        })
     };
 
     return (
@@ -226,6 +238,11 @@ export default function ItineraryPage({
             <Prose>
                 <MDXRemote source={doc.body} components={mdxComponents} />
             </Prose>
+
+            {/* Reviews */}
+            <div className="my-12">
+                <ReviewsSection slug={fm.slug} />
+            </div>
 
             {/* Newsletter Signup */}
             <div className="my-12">
